@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "framer-motion": "^11.3.17",
-    "gsap": "^3.12.5",
     "lucide-react": "^0.417.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -29,6 +28,6 @@
     "tailwindcss": "^3.4.6",
     "typescript": "~6.0.2",
     "vite": "^8.2.0",
-    "vite-plugin-sitemap": "^0.7.4"
+    "vite-plugin-sitemap": "^0.8.2"
   }
 }
