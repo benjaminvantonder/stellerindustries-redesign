@@ -5,15 +5,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ChevronDown } from 'lucide-react'
 import SignalLine from '@/components/SignalLine'
 import SignalChip from '@/components/SignalChip'
+import useReducedMotion from '@/hooks/useReducedMotion'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
+  const reducedMotion = useReducedMotion()
 
   useEffect(() => {
-    if (!heroRef.current || !contentRef.current) return
+    if (!heroRef.current || !contentRef.current || reducedMotion) return
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -24,7 +26,7 @@ export default function Hero() {
     }, heroRef)
 
     return () => ctx.revert()
-  }, [])
+  }, [reducedMotion])
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">
@@ -42,21 +44,24 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div ref={contentRef} className="relative z-10 pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full opacity-0">
+      <div
+        ref={contentRef}
+        className={`relative z-10 pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full ${reducedMotion ? '' : 'opacity-0'}`}
+      >
         <motion.p
           className="timecode text-sm mb-6"
-          initial={{ opacity: 0, x: -20 }}
+          initial={reducedMotion ? false : { opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: reducedMotion ? 0 : 0.4 }}
         >
           00:00
         </motion.p>
 
         <motion.h1
           className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-paper leading-[0.95] tracking-tight"
-          initial={{ opacity: 0, y: 30 }}
+          initial={reducedMotion ? false : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: 0.8, delay: reducedMotion ? 0 : 0.5, ease: [0.25, 0.1, 0.25, 1] }}
         >
           Sound.
           <br />
@@ -67,18 +72,18 @@ export default function Hero() {
 
         <motion.p
           className="mt-8 text-mute text-lg md:text-xl max-w-lg leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
+          initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.8 }}
+          transition={{ duration: 0.7, delay: reducedMotion ? 0 : 0.8 }}
         >
           Excellence in sound, lighting, and visual experiences for events across South Africa.
         </motion.p>
 
         <motion.div
           className="mt-10 flex flex-wrap gap-4"
-          initial={{ opacity: 0, y: 20 }}
+          initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1.0 }}
+          transition={{ duration: 0.7, delay: reducedMotion ? 0 : 1.0 }}
         >
           <a
             href="/contact"
@@ -98,13 +103,13 @@ export default function Hero() {
       {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-        initial={{ opacity: 0 }}
+        initial={reducedMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
+        transition={{ delay: reducedMotion ? 0 : 1.5, duration: 0.6 }}
       >
         <a href="#next" className="flex flex-col items-center gap-2 text-mute/50 hover:text-mute transition-colors">
           <span className="font-mono text-[10px] tracking-widest uppercase">Scroll</span>
-          <ChevronDown size={16} className="animate-bounce" />
+          <ChevronDown size={16} className={reducedMotion ? '' : 'animate-bounce'} />
         </a>
       </motion.div>
     </section>
