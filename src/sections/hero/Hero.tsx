@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
 const ease = [0.25, 0.1, 0.25, 1] as const
@@ -49,18 +50,18 @@ export default function Hero() {
           custom={1}
           variants={fadeUp}
         >
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="inline-flex items-center gap-2 bg-gold text-void text-sm font-medium px-6 py-3 hover:bg-gold/90 transition-colors duration-200"
           >
             Start a Project
-          </a>
-          <a
-            href="/work"
+          </Link>
+          <Link
+            to="/work"
             className="inline-flex items-center gap-2 border border-white/15 text-paper text-sm px-6 py-3 hover:border-white/30 transition-colors duration-200"
           >
             View Our Work
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>
