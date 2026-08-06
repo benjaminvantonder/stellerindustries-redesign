@@ -1,6 +1,50 @@
+import { useState, type FormEvent } from 'react'
 import { Helmet } from 'react-helmet-async'
+import Reveal from '@/components/Reveal'
+
+type Status = 'idle' | 'sending' | 'success' | 'error'
 
 export default function Contact() {
+  const endpoint = import.meta.env.VITE_FORM_ENDPOINT
+  const [status, setStatus] = useState<Status>('idle')
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    event: '',
+    message: '',
+  })
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+
+    if (!endpoint) {
+      setStatus('error')
+      return
+    }
+
+    setStatus('sending')
+
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      if (res.ok) {
+        setStatus('success')
+        setFormData({ name: '', email: '', event: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  const inputClass =
+    'w-full bg-transparent border border-white/10 px-4 py-3 text-paper text-sm placeholder:text-mute/30 focus:outline-none focus:border-gold/40 transition-colors'
+
   return (
     <>
       <Helmet>
@@ -10,9 +54,167 @@ export default function Contact() {
           content="Get in touch with Steller Industries for sound, lighting, and visual experiences for your event."
         />
       </Helmet>
-      <section className="pt-32 pb-20 px-8 max-w-content mx-auto">
-        <h1 className="font-display text-5xl md:text-6xl font-bold text-paper">Contact</h1>
-      </section>
+
+      <div className="pt-32">
+        <section className="py-16 md:py-24">
+          <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
+            <Reveal>
+              <p className="text-xs text-mute/50 uppercase tracking-widest mb-8">Contact</p>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <h1 className="font-display text-5xl md:text-7xl font-bold text-paper leading-[0.95]">
+                Get in touch.
+              </h1>
+            </Reveal>
+
+            <Reveal delay={0.2}>
+              <p className="mt-8 text-mute text-lg md:text-xl leading-relaxed max-w-2xl">
+                Ready to start your production? We'd love to hear about your event.
+              </p>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="pb-32">
+          <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-20">
+              {/* Form */}
+              <div className="lg:col-span-3">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <Reveal>
+                    <div>
+                      <label htmlFor="name" className="block text-xs text-mute/50 uppercase tracking-widest mb-2">
+                        Name
+                      </label>
+                      <input
+                        id="name"
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className={inputClass}
+                        placeholder="Your name"
+                      />
+                    </div>
+                  </Reveal>
+
+                  <Reveal delay={0.05}>
+                    <div>
+                      <label htmlFor="email" className="block text-xs text-mute/50 uppercase tracking-widest mb-2">
+                        Email
+                      </label>
+                      <input
+                        id="email"
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className={inputClass}
+                        placeholder="you@company.co.za"
+                      />
+                    </div>
+                  </Reveal>
+
+                  <Reveal delay={0.1}>
+                    <div>
+                      <label htmlFor="event" className="block text-xs text-mute/50 uppercase tracking-widest mb-2">
+                        Event Type
+                      </label>
+                      <input
+                        id="event"
+                        type="text"
+                        value={formData.event}
+                        onChange={(e) => setFormData({ ...formData, event: e.target.value })}
+                        className={inputClass}
+                        placeholder="e.g. Corporate gala, festival, product launch"
+                      />
+                    </div>
+                  </Reveal>
+
+                  <Reveal delay={0.15}>
+                    <div>
+                      <label htmlFor="message" className="block text-xs text-mute/50 uppercase tracking-widest mb-2">
+                        Message
+                      </label>
+                      <textarea
+                        id="message"
+                        required
+                        rows={5}
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        className={`${inputClass} resize-none`}
+                        placeholder="Tell us about your event..."
+                      />
+                    </div>
+                  </Reveal>
+
+                  <Reveal delay={0.2}>
+                    <div className="flex items-center gap-4 pt-2">
+                      <button
+                        type="submit"
+                        disabled={status === 'sending'}
+                        className="bg-gold text-void text-sm font-medium px-6 py-3 hover:bg-gold/90 transition-colors duration-200 disabled:opacity-50"
+                      >
+                        {status === 'sending' ? 'Sending...' : 'Send Message'}
+                      </button>
+
+                      {status === 'success' && (
+                        <span className="text-sm text-green-400">Sent successfully</span>
+                      )}
+                      {status === 'error' && (
+                        <span className="text-sm text-red-400">
+                          {!endpoint ? 'Form not configured' : 'Failed to send'}
+                        </span>
+                      )}
+                    </div>
+                  </Reveal>
+                </form>
+              </div>
+
+              {/* Contact info */}
+              <div className="lg:col-span-2">
+                <Reveal delay={0.2}>
+                  <div className="space-y-10">
+                    <div>
+                      <p className="text-xs text-mute/50 uppercase tracking-widest mb-4">Email</p>
+                      <p className="text-paper">info@stellerindustries.co.za</p>
+                    </div>
+
+                    <div>
+                      <p className="text-xs text-mute/50 uppercase tracking-widest mb-4">Phone</p>
+                      <p className="text-paper">+27 XX XXX XXXX</p>
+                    </div>
+
+                    <div>
+                      <p className="text-xs text-mute/50 uppercase tracking-widest mb-4">WhatsApp</p>
+                      <a
+                        href="https://wa.me/27000000000"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block border border-white/15 text-paper text-sm px-5 py-2.5 hover:border-white/30 transition-colors duration-200"
+                      >
+                        Chat on WhatsApp
+                      </a>
+                    </div>
+
+                    <div>
+                      <p className="text-xs text-mute/50 uppercase tracking-widest mb-4">Location</p>
+                      <p className="text-paper">South Africa</p>
+                    </div>
+
+                    <div className="pt-6 border-t border-white/5">
+                      <p className="text-sm text-mute">
+                        We typically respond within 24 hours during business days.
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </>
   )
 }
