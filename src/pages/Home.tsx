@@ -1,20 +1,25 @@
 import { Helmet } from 'react-helmet-async'
+import Hero from '../sections/hero/Hero'
+import ServicesOverview from '../sections/home/ServicesOverview'
+import FeaturedWork from '../sections/home/FeaturedWork'
+import TrustBar from '../sections/home/TrustBar'
+import CTASection from '../sections/home/CTASection'
 
 export default function Home() {
   return (
     <>
       <Helmet>
         <title>Steller Industries — Excellence in Sound, Light, and Vision</title>
-        <meta name="description" content="South Africa's premier sound, lighting, and visual experiences for events." />
+        <meta
+          name="description"
+          content="South Africa's premier sound, lighting, and visual experiences for events of every scale."
+        />
       </Helmet>
-      <section className="pt-32 pb-20 px-8 max-w-content mx-auto">
-        <h1 className="font-display text-5xl md:text-7xl font-bold text-paper leading-tight">
-          Sound. Light.<br />Vision.
-        </h1>
-        <p className="mt-6 text-mute text-lg max-w-xl">
-          Excellence in sound, lighting, and visual experiences for events across South Africa.
-        </p>
-      </section>
+      <Hero />
+      <ServicesOverview />
+      <FeaturedWork />
+      <TrustBar />
+      <CTASection />
     </>
   )
 }
