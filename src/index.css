@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-void text-paper font-sans;
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(200, 155, 60, 0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(200, 155, 60, 0.03) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: rgba(200, 155, 60, 0.3);
+    color: #F7F3EC;
+  }
+}
+
+@layer components {
+  .signal-line {
+    @apply fixed left-8 top-0 h-full w-px bg-signal/20;
+    z-index: 1;
+  }
+
+  .signal-line-pulse {
+    @apply absolute left-0 w-full bg-pulse/60;
+    height: 120px;
+    filter: blur(1px);
+    box-shadow: 0 0 20px 4px rgba(232, 196, 104, 0.3);
+  }
+
+  .timecode {
+    @apply font-mono text-xs tracking-widest text-signal/70 uppercase;
+  }
+
+  .data-chip {
+    @apply font-mono text-[10px] tracking-wider text-mute/80 border border-signal/15 
+           px-2 py-1 bg-ink/60 backdrop-blur-sm inline-flex items-center gap-1.5;
+  }
+
+  .section-label {
+    @apply font-mono text-xs tracking-[0.2em] text-signal/60 uppercase mb-3;
+  }
+
+  .page-container {
+    @apply relative min-h-screen;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signal-line-pulse {
+    animation: none !important;
+    opacity: 0.6 !important;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
