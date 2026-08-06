@@ -4,7 +4,7 @@ import { fileURLToPath, URL } from 'node:url'
 import sitemap from 'vite-plugin-sitemap'
 
 export default defineConfig({
-  base: '/stellerindustries-redesign/',
+  base: process.env.BASE_URL || '/',
   plugins: [
     react(),
     sitemap({
