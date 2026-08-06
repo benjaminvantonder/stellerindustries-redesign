@@ -2,6 +2,15 @@ import { Helmet } from 'react-helmet-async'
 import Reveal from '@/components/Reveal'
 import { portfolio } from '@/data/portfolio'
 
+const images = [
+  'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1280&q=80',
+  'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1280&q=80',
+  'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1280&q=80',
+  'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1280&q=80',
+  'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1280&q=80',
+  'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1280&q=80',
+]
+
 export default function Work() {
   return (
     <>
@@ -35,14 +44,20 @@ export default function Work() {
           </div>
         </section>
 
-        {/* Portfolio grid — large images, minimal caption */}
         <section className="pb-32">
           <div className="max-w-content mx-auto px-8">
             <div className="space-y-24">
               {portfolio.map((item, i) => (
                 <Reveal key={item.id} delay={i * 0.06}>
                   <article>
-                    <div className="aspect-[16/9] bg-ink/60 w-full" />
+                    <div className="aspect-[16/9] bg-ink/60 overflow-hidden">
+                      <img
+                        src={images[i]}
+                        alt={item.title}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                        loading="lazy"
+                      />
+                    </div>
                     <div className="mt-6 flex items-baseline justify-between">
                       <div>
                         <h2 className="font-display text-xl md:text-2xl font-semibold text-paper">

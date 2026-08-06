@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import { Link } from 'react-router-dom'
 import Reveal from '@/components/Reveal'
 import { services } from '@/data/services'
 
@@ -35,8 +36,19 @@ export default function Services() {
           </div>
         </section>
 
+        {/* Full-bleed image */}
+        <Reveal>
+          <div className="aspect-[21/9] md:aspect-[3/1] overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1920&q=80"
+              alt="Stage lighting at a live event"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </Reveal>
+
         {/* Plain list */}
-        <section className="py-16 md:py-24 border-t border-white/5">
+        <section className="py-16 md:py-24">
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
             {services.map((service, i) => (
               <Reveal key={service.title} delay={i * 0.08}>
@@ -58,12 +70,12 @@ export default function Services() {
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
             <Reveal>
               <p className="text-mute mb-6">Ready to discuss your production?</p>
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="inline-flex items-center gap-2 bg-gold text-void text-sm font-medium px-6 py-3 hover:bg-gold/90 transition-colors duration-200"
               >
                 Get in Touch
-              </a>
+              </Link>
             </Reveal>
           </div>
         </section>

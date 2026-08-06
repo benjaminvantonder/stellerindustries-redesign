@@ -13,7 +13,7 @@ export default function About() {
       </Helmet>
 
       <div className="pt-32">
-        {/* THE NAME — large pull-quote moment */}
+        {/* THE NAME */}
         <section className="min-h-[70vh] flex items-center">
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
             <Reveal>
@@ -46,6 +46,17 @@ export default function About() {
           </div>
         </section>
 
+        {/* Full-bleed image */}
+        <Reveal>
+          <div className="aspect-[21/9] md:aspect-[3/1] overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=1920&q=80"
+              alt="Concert audience with dramatic stage lighting"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </Reveal>
+
         {/* Philosophy */}
         <section className="py-32 md:py-40">
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
@@ -72,33 +83,42 @@ export default function About() {
           </div>
         </section>
 
-        {/* Story */}
+        {/* Two-column image + text */}
+        <section className="grid grid-cols-1 md:grid-cols-2">
+          <Reveal>
+            <div className="aspect-square md:aspect-auto md:h-full overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=960&q=80"
+                alt="Sound mixing console in a dark venue"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </Reveal>
+          <div className="flex items-center">
+            <Reveal delay={0.1}>
+              <div className="p-8 md:p-16">
+                <h2 className="font-display text-3xl md:text-4xl font-bold text-paper leading-tight">
+                  Built from the ground up, one clean cue at a time.
+                </h2>
+                <p className="mt-6 text-mute text-lg leading-relaxed">
+                  Steller Industries began with a single lighting rig and a conviction that
+                  production quality shouldn't be a luxury reserved for the biggest budgets.
+                  We started small and built our reputation one clean cue at a time.
+                </p>
+                <p className="mt-4 text-mute text-lg leading-relaxed">
+                  Today, we handle full-scale event production across South Africa. The scale
+                  changed. The standard didn't.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* Stats */}
         <section className="py-32 md:py-40 border-t border-white/5">
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
             <Reveal>
-              <h2 className="font-display text-3xl md:text-5xl font-bold text-paper leading-tight max-w-2xl">
-                Built from the ground up, one clean cue at a time.
-              </h2>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <p className="mt-8 text-mute text-lg leading-relaxed max-w-2xl">
-                Steller Industries began with a single lighting rig and a conviction that
-                production quality shouldn't be a luxury reserved for the biggest budgets.
-                We started small — local events, private functions, community festivals —
-                and built our reputation one clean cue at a time.
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.2}>
-              <p className="mt-6 text-mute text-lg leading-relaxed max-w-2xl">
-                Today, we handle full-scale event production across South Africa. The scale
-                changed. The standard didn't.
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.3}>
-              <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-12">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
                 {[
                   { number: '200+', label: 'Events' },
                   { number: '50+', label: 'Corporate clients' },
