@@ -17,8 +17,8 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md">
-      <nav className="max-w-content mx-auto px-8 h-16 flex items-center justify-between">
-        <Link to="/" className="font-display text-lg font-semibold text-paper tracking-tight">
+      <nav className="max-w-content mx-auto px-8 h-20 flex items-center justify-between">
+        <Link to="/" className="font-display text-xl font-semibold text-paper tracking-tight">
           Steller
         </Link>
 
@@ -27,7 +27,7 @@ export default function Navbar() {
             <li key={to}>
               <Link
                 to={to}
-                className={`text-sm transition-colors duration-200 ${
+                className={`text-base transition-colors duration-200 ${
                   location.pathname === to
                     ? 'text-gold'
                     : 'text-mute hover:text-paper'
