@@ -5,10 +5,10 @@ import ScrollToTop from './ScrollToTop'
 
 export default function Layout() {
   return (
-    <div className="page-container">
+    <div className="min-h-screen">
       <ScrollToTop />
       <Navbar />
-      <main className="relative z-10">
+      <main>
         <Outlet />
       </main>
       <Footer />

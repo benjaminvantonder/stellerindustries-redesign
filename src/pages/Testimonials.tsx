@@ -1,9 +1,4 @@
 import { Helmet } from 'react-helmet-async'
-import SignalLine from '@/components/SignalLine'
-import SignalChip from '@/components/SignalChip'
-import Reveal from '@/components/Reveal'
-import SectionHeading from '@/components/SectionHeading'
-import TestimonialsGrid from '@/sections/testimonials/TestimonialsGrid'
 
 export default function Testimonials() {
   return (
@@ -15,28 +10,9 @@ export default function Testimonials() {
           content="What our clients say about Steller Industries — sound, lighting, and visual experiences."
         />
       </Helmet>
-      <div className="pt-24">
-        <SignalLine>
-          <SignalChip label="00:00" top="15%" />
-          <SignalChip label="TESTIMONIALS" top="20%" />
-        </SignalLine>
-
-        <section className="py-16 md:py-24">
-          <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto">
-            <Reveal>
-              <SectionHeading
-                timecode="00:00"
-                label="Testimonials"
-                heading="Client Voices"
-              />
-            </Reveal>
-
-            <div className="mt-16">
-              <TestimonialsGrid />
-            </div>
-          </div>
-        </section>
-      </div>
+      <section className="pt-32 pb-20 px-8 max-w-content mx-auto">
+        <h1 className="font-display text-5xl md:text-6xl font-bold text-paper">Testimonials</h1>
+      </section>
     </>
   )
 }

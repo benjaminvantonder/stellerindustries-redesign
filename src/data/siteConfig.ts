@@ -6,5 +6,4 @@ export const siteConfig = {
   url: 'https://stellerindustries.co.za',
   email: 'info@stellerindustries.co.za',
   phone: '+27 XX XXX XXXX',
-  location: 'South Africa',
 }
