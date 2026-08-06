@@ -182,7 +182,7 @@ export default function Home() {
                       src={[
                         'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1280&q=80',
                         'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1280&q=80',
-                        'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1280&q=80',
+                        'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1280&q=80',
                       ][i]}
                       alt={item.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
