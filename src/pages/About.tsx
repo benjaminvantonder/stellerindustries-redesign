@@ -84,7 +84,7 @@ export default function About() {
         </section>
 
         {/* Two-column image + text */}
-        <section className="grid grid-cols-1 md:grid-cols-2">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-0 px-8 md:px-0">
           <Reveal>
             <div className="aspect-square md:aspect-auto md:h-full overflow-hidden">
               <img

@@ -139,7 +139,7 @@ export default function Home() {
       </section>
 
       {/* Full-bleed image split */}
-      <section className="grid grid-cols-1 md:grid-cols-2">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 px-8 md:px-0">
         <Reveal>
           <div className="aspect-square md:aspect-[4/3] overflow-hidden">
             <img
