@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion, AnimatePresence } from 'framer-motion'
-import Reveal from '@/components/Reveal'
+
 import { testimonials } from '@/data/testimonials'
 
 export default function Testimonials() {
@@ -9,10 +9,6 @@ export default function Testimonials() {
 
   const next = useCallback(() => {
     setCurrent((prev) => (prev + 1) % testimonials.length)
-  }, [])
-
-  const prev = useCallback(() => {
-    setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)
   }, [])
 
   useEffect(() => {
@@ -35,18 +31,14 @@ export default function Testimonials() {
       <div className="pt-32">
         <section className="min-h-[80vh] flex items-center">
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
-            <Reveal>
-              <p className="text-xs text-mute/50 uppercase tracking-widest mb-16">Testimonials</p>
-            </Reveal>
-
             <div className="min-h-[320px] flex items-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={t.id}
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -16 }}
-                  transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
                 >
                   <blockquote className="font-display text-3xl md:text-5xl lg:text-6xl text-paper leading-snug max-w-4xl">
                     &ldquo;{t.quote}&rdquo;
@@ -58,7 +50,7 @@ export default function Testimonials() {
                       <p className="text-paper text-sm">{t.name}</p>
                       <p className="text-mute/50 text-sm mt-0.5">
                         {t.role}
-                        {t.event && <span className="text-gold/30"> · {t.event}</span>}
+                        {t.event && <span className="text-gold/30"> &middot; {t.event}</span>}
                       </p>
                     </div>
                   </div>
@@ -66,25 +58,18 @@ export default function Testimonials() {
               </AnimatePresence>
             </div>
 
-            {/* Navigation */}
-            <div className="mt-16 flex items-center gap-6">
-              <button
-                onClick={prev}
-                className="text-mute/30 hover:text-paper transition-colors text-sm"
-                aria-label="Previous testimonial"
-              >
-                &larr; Prev
-              </button>
-              <span className="text-xs text-mute/30">
-                {current + 1} / {testimonials.length}
-              </span>
-              <button
-                onClick={next}
-                className="text-mute/30 hover:text-paper transition-colors text-sm"
-                aria-label="Next testimonial"
-              >
-                Next &rarr;
-              </button>
+            {/* Dot navigation */}
+            <div className="mt-16 flex items-center gap-3">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                    i === current ? 'bg-gold' : 'bg-white/15 hover:bg-white/30'
+                  }`}
+                  aria-label={`Go to testimonial ${i + 1}`}
+                />
+              ))}
             </div>
           </div>
         </section>

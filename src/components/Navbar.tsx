@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
 const navLinks = [
-  { to: '/', label: 'Home' },
   { to: '/about', label: 'About' },
   { to: '/services', label: 'Services' },
   { to: '/work', label: 'Work' },
@@ -27,7 +26,7 @@ export default function Navbar() {
             <li key={to}>
               <Link
                 to={to}
-                className={`text-base transition-colors duration-200 ${
+                className={`text-sm transition-colors duration-200 ${
                   location.pathname === to
                     ? 'text-gold'
                     : 'text-mute hover:text-paper'
@@ -49,14 +48,14 @@ export default function Navbar() {
       </nav>
 
       {isOpen && (
-        <div className="md:hidden bg-ink/95 backdrop-blur-lg border-t border-white/5">
-          <ul className="flex flex-col px-8 py-6 gap-4">
+        <div className="md:hidden bg-ink/95 backdrop-blur-lg">
+          <ul className="flex flex-col px-8 py-4 gap-1">
             {navLinks.map(({ to, label }) => (
               <li key={to}>
                 <Link
                   to={to}
                   onClick={() => setIsOpen(false)}
-                  className={`text-sm block py-2 transition-colors duration-200 ${
+                  className={`text-sm block py-3 transition-colors duration-200 ${
                     location.pathname === to
                       ? 'text-gold'
                       : 'text-mute hover:text-paper'

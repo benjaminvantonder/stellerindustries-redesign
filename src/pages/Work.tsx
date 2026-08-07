@@ -26,18 +26,14 @@ export default function Work() {
         <section className="py-16 md:py-24">
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
             <Reveal>
-              <p className="text-xs text-mute/50 uppercase tracking-widest mb-8">Work</p>
-            </Reveal>
-
-            <Reveal delay={0.1}>
               <h1 className="font-display text-5xl md:text-7xl font-bold text-paper leading-[0.95]">
                 Portfolio
               </h1>
             </Reveal>
 
-            <Reveal delay={0.2}>
+            <Reveal delay={0.1}>
               <p className="mt-8 text-mute text-lg md:text-xl leading-relaxed max-w-2xl">
-                A selection of productions we've delivered — from intimate corporate events
+                A selection of productions we&apos;ve delivered — from intimate corporate events
                 to large-scale festival stages.
               </p>
             </Reveal>
@@ -46,19 +42,19 @@ export default function Work() {
 
         <section className="pb-32">
           <div className="max-w-content mx-auto px-8">
-            <div className="space-y-24">
+            <div className="space-y-20">
               {portfolio.map((item, i) => (
-                <Reveal key={item.id} delay={i * 0.06}>
+                <Reveal key={item.id} delay={i * 0.05}>
                   <article>
                     <div className="aspect-[16/9] bg-ink/60 overflow-hidden">
                       <img
                         src={images[i]}
                         alt={item.title}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover hover:scale-[1.03] transition-transform duration-700"
                         loading="lazy"
                       />
                     </div>
-                    <div className="mt-6 flex items-baseline justify-between">
+                    <div className="mt-5 flex items-baseline justify-between">
                       <div>
                         <h2 className="font-display text-xl md:text-2xl font-semibold text-paper">
                           {item.title}

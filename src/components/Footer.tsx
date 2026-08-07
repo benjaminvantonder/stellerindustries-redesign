@@ -10,47 +10,63 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5">
+    <footer>
       <div className="max-w-content mx-auto px-8 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12">
           <div>
             <Link to="/" className="font-display text-xl font-semibold text-paper">
               Steller
             </Link>
             <p className="mt-4 text-sm text-mute leading-relaxed max-w-xs">
-              Excellence in sound, lighting, and visual experiences for events across South Africa.
+              Sound. Light. Vision. Excellence in event production across South Africa.
             </p>
           </div>
 
-          <div>
-            <p className="text-xs text-mute/60 uppercase tracking-widest mb-4">Navigate</p>
-            <ul className="space-y-2">
-              {footerLinks.map(({ to, label }) => (
-                <li key={to}>
-                  <Link
-                    to={to}
+          <div className="flex gap-16">
+            <div>
+              <ul className="space-y-2.5">
+                {footerLinks.map(({ to, label }) => (
+                  <li key={to}>
+                    <Link
+                      to={to}
+                      className="text-sm text-mute hover:text-paper transition-colors duration-200"
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <ul className="space-y-2.5">
+                <li>
+                  <a
+                    href="mailto:info@stellerindustries.co.za"
                     className="text-sm text-mute hover:text-paper transition-colors duration-200"
                   >
-                    {label}
-                  </Link>
+                    info@stellerindustries.co.za
+                  </a>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <p className="text-xs text-mute/60 uppercase tracking-widest mb-4">Get in Touch</p>
-            <ul className="space-y-3">
-              <li className="text-sm text-mute">info@stellerindustries.co.za</li>
-              <li className="text-sm text-mute">+27 XX XXX XXXX</li>
-              <li className="text-sm text-mute">South Africa</li>
-            </ul>
+                <li>
+                  <a
+                    href="https://wa.me/27000000000"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-mute hover:text-paper transition-colors duration-200"
+                  >
+                    WhatsApp
+                  </a>
+                </li>
+                <li className="text-sm text-mute/50">South Africa</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-white/5">
-          <p className="text-xs text-mute/40">
-            &copy; {new Date().getFullYear()} Steller Industries. All rights reserved.
+        <div className="mt-16">
+          <p className="text-xs text-mute/30">
+            &copy; {new Date().getFullYear()} Steller Industries
           </p>
         </div>
       </div>

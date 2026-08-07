@@ -17,45 +17,30 @@ export default function About() {
         <section className="min-h-[70vh] flex items-center">
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
             <Reveal>
-              <p className="text-xs text-mute/50 uppercase tracking-widest mb-8">The Name</p>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <h1 className="font-display text-6xl md:text-8xl font-bold text-paper leading-[0.95]">
+              <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-bold text-paper leading-[0.9]">
                 Steller
               </h1>
             </Reveal>
 
-            <Reveal delay={0.2}>
+            <Reveal delay={0.1}>
               <p className="mt-12 text-mute text-lg md:text-xl leading-relaxed max-w-2xl">
-                The double "L" is deliberate. Spoken, it sounds like{' '}
+                The double &ldquo;L&rdquo; is deliberate. Spoken, it sounds like{' '}
                 <em className="text-paper not-italic">stellar</em> — representing excellence.
-                Written, it's more visually distinctive — just like our photography and
+                Written, it&apos;s more visually distinctive — just like our photography and
                 videography. A name that embodies our commitment to top-tier sound, lighting, and
                 visual experiences.
               </p>
             </Reveal>
 
-            <Reveal delay={0.3}>
+            <Reveal delay={0.2}>
               <blockquote className="mt-16 pl-6 border-l border-gold/30">
                 <p className="font-display text-2xl md:text-3xl text-paper leading-relaxed">
-                  "Recognised for our quality, memorable for our character."
+                  &ldquo;Recognised for our quality, memorable for our character.&rdquo;
                 </p>
               </blockquote>
             </Reveal>
           </div>
         </section>
-
-        {/* Full-bleed image */}
-        <Reveal>
-          <div className="aspect-[21/9] md:aspect-[3/1] overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=1920&q=80"
-              alt="Concert audience with dramatic stage lighting"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </Reveal>
 
         {/* Philosophy */}
         <section className="py-32 md:py-40">
@@ -69,7 +54,7 @@ export default function About() {
             <Reveal delay={0.1}>
               <p className="mt-8 text-mute text-lg leading-relaxed max-w-2xl">
                 Events are sequences of moments, each one building on the last. A lighting cue
-                that arrives half a beat late. A sound transition that doesn't land. These are
+                that arrives half a beat late. A sound transition that doesn&apos;t land. These are
                 the things guests remember — not as details, but as feelings.
               </p>
             </Reveal>
@@ -77,14 +62,14 @@ export default function About() {
             <Reveal delay={0.2}>
               <p className="mt-6 text-mute text-lg leading-relaxed max-w-2xl">
                 We approach every production as a chain: input, processing, output. Every link
-                has to be clean. That's not perfectionism — it's the baseline.
+                has to be clean. That&apos;s not perfectionism — it&apos;s the baseline.
               </p>
             </Reveal>
           </div>
         </section>
 
-        {/* Two-column image + text */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-0 px-8 md:px-0">
+        {/* Story */}
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0">
           <Reveal>
             <div className="aspect-square md:aspect-auto md:h-full overflow-hidden">
               <img
@@ -102,12 +87,12 @@ export default function About() {
                 </h2>
                 <p className="mt-6 text-mute text-lg leading-relaxed">
                   Steller Industries began with a single lighting rig and a conviction that
-                  production quality shouldn't be a luxury reserved for the biggest budgets.
+                  production quality shouldn&apos;t be a luxury reserved for the biggest budgets.
                   We started small and built our reputation one clean cue at a time.
                 </p>
                 <p className="mt-4 text-mute text-lg leading-relaxed">
                   Today, we handle full-scale event production across South Africa. The scale
-                  changed. The standard didn't.
+                  changed. The standard didn&apos;t.
                 </p>
               </div>
             </Reveal>
@@ -115,7 +100,7 @@ export default function About() {
         </section>
 
         {/* Stats */}
-        <section className="py-32 md:py-40 border-t border-white/5">
+        <section className="py-32 md:py-40">
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
             <Reveal>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-12">

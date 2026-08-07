@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-void text-paper font-sans;
+    @apply bg-void text-paper font-sans antialiased;
   }
 
   ::selection {
@@ -24,12 +24,13 @@
     position: absolute;
     inset: 0;
     background: radial-gradient(
-      ellipse 60% 50% at 50% 40%,
-      rgba(201, 162, 39, 0.12) 0%,
+      ellipse 70% 55% at 50% 35%,
+      rgba(201, 162, 39, 0.18) 0%,
+      rgba(201, 162, 39, 0.06) 40%,
       transparent 70%
     );
     opacity: 0;
-    animation: spotlight-up 2.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    animation: spotlight-up 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
     pointer-events: none;
     z-index: 1;
   }
@@ -37,7 +38,7 @@
   @keyframes spotlight-up {
     0% {
       opacity: 0;
-      transform: scale(0.8) translateY(20px);
+      transform: scale(0.85) translateY(12px);
     }
     100% {
       opacity: 1;

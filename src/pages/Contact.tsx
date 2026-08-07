@@ -43,7 +43,7 @@ export default function Contact() {
   }
 
   const inputClass =
-    'w-full bg-transparent border border-white/10 px-4 py-3 text-paper text-sm placeholder:text-mute/30 focus:outline-none focus:border-gold/40 transition-colors'
+    'w-full bg-ink/40 border border-white/10 px-5 py-3.5 text-paper text-sm placeholder:text-mute/40 focus:outline-none focus:border-gold/50 transition-colors'
 
   return (
     <>
@@ -59,18 +59,14 @@ export default function Contact() {
         <section className="py-16 md:py-24">
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
             <Reveal>
-              <p className="text-xs text-mute/50 uppercase tracking-widest mb-8">Contact</p>
-            </Reveal>
-
-            <Reveal delay={0.1}>
               <h1 className="font-display text-5xl md:text-7xl font-bold text-paper leading-[0.95]">
                 Get in touch.
               </h1>
             </Reveal>
 
-            <Reveal delay={0.2}>
+            <Reveal delay={0.1}>
               <p className="mt-8 text-mute text-lg md:text-xl leading-relaxed max-w-2xl">
-                Ready to start your production? We'd love to hear about your event.
+                Ready to start your production? We&apos;d love to hear about your event.
               </p>
             </Reveal>
           </div>
@@ -84,7 +80,7 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <Reveal>
                     <div>
-                      <label htmlFor="name" className="block text-xs text-mute/50 uppercase tracking-widest mb-2">
+                      <label htmlFor="name" className="block text-sm text-mute mb-2">
                         Name
                       </label>
                       <input
@@ -101,7 +97,7 @@ export default function Contact() {
 
                   <Reveal delay={0.05}>
                     <div>
-                      <label htmlFor="email" className="block text-xs text-mute/50 uppercase tracking-widest mb-2">
+                      <label htmlFor="email" className="block text-sm text-mute mb-2">
                         Email
                       </label>
                       <input
@@ -118,7 +114,7 @@ export default function Contact() {
 
                   <Reveal delay={0.1}>
                     <div>
-                      <label htmlFor="event" className="block text-xs text-mute/50 uppercase tracking-widest mb-2">
+                      <label htmlFor="event" className="block text-sm text-mute mb-2">
                         Event Type
                       </label>
                       <input
@@ -134,7 +130,7 @@ export default function Contact() {
 
                   <Reveal delay={0.15}>
                     <div>
-                      <label htmlFor="message" className="block text-xs text-mute/50 uppercase tracking-widest mb-2">
+                      <label htmlFor="message" className="block text-sm text-mute mb-2">
                         Message
                       </label>
                       <textarea
@@ -154,7 +150,7 @@ export default function Contact() {
                       <button
                         type="submit"
                         disabled={status === 'sending'}
-                        className="bg-gold text-void text-sm font-medium px-6 py-3 hover:bg-gold/90 transition-colors duration-200 disabled:opacity-50"
+                        className="bg-gold text-void text-sm font-medium px-7 py-3.5 hover:bg-gold/90 transition-colors duration-200 disabled:opacity-50"
                       >
                         {status === 'sending' ? 'Sending...' : 'Send Message'}
                       </button>
@@ -177,17 +173,22 @@ export default function Contact() {
                 <Reveal delay={0.2}>
                   <div className="space-y-10">
                     <div>
-                      <p className="text-xs text-mute/50 uppercase tracking-widest mb-4">Email</p>
-                      <p className="text-paper">info@stellerindustries.co.za</p>
+                      <p className="text-sm text-mute mb-2">Email</p>
+                      <a
+                        href="mailto:info@stellerindustries.co.za"
+                        className="text-paper hover:text-gold transition-colors"
+                      >
+                        info@stellerindustries.co.za
+                      </a>
                     </div>
 
                     <div>
-                      <p className="text-xs text-mute/50 uppercase tracking-widest mb-4">Phone</p>
+                      <p className="text-sm text-mute mb-2">Phone</p>
                       <p className="text-paper">+27 XX XXX XXXX</p>
                     </div>
 
                     <div>
-                      <p className="text-xs text-mute/50 uppercase tracking-widest mb-4">WhatsApp</p>
+                      <p className="text-sm text-mute mb-2">WhatsApp</p>
                       <a
                         href="https://wa.me/27000000000"
                         target="_blank"
@@ -199,12 +200,12 @@ export default function Contact() {
                     </div>
 
                     <div>
-                      <p className="text-xs text-mute/50 uppercase tracking-widest mb-4">Location</p>
+                      <p className="text-sm text-mute mb-2">Location</p>
                       <p className="text-paper">South Africa</p>
                     </div>
 
-                    <div className="pt-6 border-t border-white/5">
-                      <p className="text-sm text-mute">
+                    <div className="pt-6">
+                      <p className="text-sm text-mute/50">
                         We typically respond within 24 hours during business days.
                       </p>
                     </div>
