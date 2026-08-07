@@ -14,7 +14,16 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center spotlight">
+    <section className="relative min-h-screen flex items-center spotlight overflow-hidden">
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1920&q=80"
+          alt=""
+          className="w-full h-full object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-void via-void/80 to-void/50" />
+      </div>
+
       <div className="relative z-10 pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
         <motion.h1
           className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] font-bold text-paper leading-[0.9] tracking-tight"
