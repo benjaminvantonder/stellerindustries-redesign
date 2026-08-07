@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom'
 import Reveal from '@/components/Reveal'
 import { services } from '@/data/services'
 
+const serviceImages = [
+  'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80',
+  'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80',
+  'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80',
+  'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80',
+  'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80',
+]
+
 export default function Services() {
   return (
     <>
@@ -32,18 +40,28 @@ export default function Services() {
           </div>
         </section>
 
-        {/* Services list */}
+        {/* Services list with images */}
         <section className="pb-16 md:pb-24">
-          <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
+          <div className="max-w-content mx-auto px-8 space-y-16 md:space-y-24">
             {services.map((service, i) => (
               <Reveal key={service.title} delay={i * 0.06}>
-                <div className="py-10 md:py-14 border-b border-white/5 last:border-b-0">
-                  <h2 className="font-display text-2xl md:text-4xl font-bold text-paper">
-                    {service.title}
-                  </h2>
-                  <p className="mt-4 text-mute text-lg leading-relaxed max-w-2xl">
-                    {service.description}
-                  </p>
+                <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center ${i % 2 === 1 ? 'md:[direction:rtl]' : ''}`}>
+                  <div className="aspect-[4/3] bg-ink/60 overflow-hidden md:[direction:ltr]">
+                    <img
+                      src={serviceImages[i]}
+                      alt={service.title}
+                      className="w-full h-full object-cover hover:scale-[1.03] transition-transform duration-700"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="md:[direction:ltr]">
+                    <h2 className="font-display text-2xl md:text-4xl font-bold text-paper">
+                      {service.title}
+                    </h2>
+                    <p className="mt-4 text-mute text-lg leading-relaxed max-w-xl">
+                      {service.description}
+                    </p>
+                  </div>
                 </div>
               </Reveal>
             ))}
