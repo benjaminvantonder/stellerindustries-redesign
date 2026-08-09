@@ -27,30 +27,33 @@ export default function Navbar() {
     setMobileOpen(false);
   }, [location.pathname]);
 
+  // Pill mode only when scrolled AND mobile menu is closed
+  const pill = scrolled && !mobileOpen;
+
   return (
     <motion.nav
       initial={false}
       animate={{
-        marginLeft: scrolled ? 24 : 0,
-        marginRight: scrolled ? 24 : 0,
-        marginTop: scrolled ? 16 : 4,
-        marginBottom: scrolled ? 0 : 4,
-        paddingLeft: scrolled ? 24 : 32,
-        paddingRight: scrolled ? 24 : 32,
-        borderTopLeftRadius: scrolled ? 999 : 0,
-        borderTopRightRadius: scrolled ? 999 : 0,
-        borderBottomLeftRadius: scrolled ? 999 : 0,
-        borderBottomRightRadius: scrolled ? 999 : 0,
-        boxShadow: scrolled ? "0 8px 24px rgba(0,0,0,0.12)" : "0 0 0 rgba(0,0,0,0)",
+        marginLeft: pill ? 24 : 0,
+        marginRight: pill ? 24 : 0,
+        marginTop: pill ? 16 : 4,
+        marginBottom: pill ? 0 : 4,
+        paddingLeft: pill ? 24 : 32,
+        paddingRight: pill ? 24 : 32,
+        borderTopLeftRadius: pill ? 999 : 0,
+        borderTopRightRadius: pill ? 999 : 0,
+        borderBottomLeftRadius: pill ? 999 : 0,
+        borderBottomRightRadius: pill ? 999 : 0,
+        boxShadow: pill ? "0 8px 24px rgba(0,0,0,0.12)" : "0 0 0 rgba(0,0,0,0)",
       }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
       className="fixed top-0 left-0 right-0 z-50 flex h-[64px] md:h-[72px] items-center justify-between overflow-visible"
       style={{
         background: "var(--color-surface)",
         borderBottom: "2px solid var(--color-ink)",
-        borderLeft: scrolled ? "2px solid var(--color-ink)" : "none",
-        borderRight: scrolled ? "2px solid var(--color-ink)" : "none",
-        borderTop: scrolled ? "2px solid var(--color-ink)" : "none",
+        borderLeft: pill ? "2px solid var(--color-ink)" : "none",
+        borderRight: pill ? "2px solid var(--color-ink)" : "none",
+        borderTop: pill ? "2px solid var(--color-ink)" : "none",
       }}
     >
       <Link to="/" className="text-base md:text-lg font-bold shrink-0" style={{ color: "var(--color-ink)" }}>
