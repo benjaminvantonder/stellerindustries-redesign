@@ -2,18 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-cream: #FEF8EF;
+  --color-surface: #FFFFFF;
+  --color-ink: #1F1F23;
+  --color-muted: #6B7280;
+  --color-accent: #3B82F6;
+  --color-accent-hover: #2563EB;
+}
+
 @layer base {
   body {
-    background-color: #FEF8EF;
-    color: #1F1F23;
+    background-color: var(--color-cream);
+    color: var(--color-ink);
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
-    background: rgba(59, 130, 246, 0.2);
-    color: #1F1F23;
+    background: var(--color-accent);
+    color: var(--color-surface);
   }
 }
 
@@ -21,16 +30,12 @@
 .navbar-scurve {
   position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 32px);
-  max-width: 1200px;
+  left: 0;
+  right: 0;
   z-index: 50;
-  background: #FFFFFF;
-  border: 2px solid #1F1F23;
+  background: var(--color-surface);
+  border: 2px solid var(--color-ink);
   border-top: none;
-  padding: 16px 32px;
-  margin-top: 0;
 }
 
 /* Top-left corner: convex bump + concave bite */
@@ -47,8 +52,8 @@
 /* Top-left: white convex bump */
 .navbar-scurve::before {
   left: -2px;
-  background: #FFFFFF;
-  border: 2px solid #1F1F23;
+  background: var(--color-surface);
+  border: 2px solid var(--color-ink);
   border-bottom: none;
   border-right: none;
   z-index: 2;
@@ -57,7 +62,7 @@
 /* Top-left: cream concave bite */
 .navbar-scurve::after {
   left: 10px;
-  background: #FEF8EF;
+  background: var(--color-cream);
   z-index: 3;
 }
 
@@ -69,8 +74,8 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #FFFFFF;
-  border: 2px solid #1F1F23;
+  background: var(--color-surface);
+  border: 2px solid var(--color-ink);
   border-bottom: none;
   border-left: none;
   z-index: 2;
@@ -83,12 +88,13 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #FEF8EF;
+  background: var(--color-cream);
   z-index: 3;
 }
 
+/* Nav link styles */
 .nav-link {
-  color: #1F1F23;
+  color: var(--color-ink);
   text-decoration: none;
   font-size: 14px;
   font-weight: 400;
@@ -97,16 +103,16 @@
 }
 
 .nav-link:hover {
-  color: #3B82F6;
+  color: var(--color-accent);
 }
 
 .nav-link.active {
-  color: #3B82F6;
+  color: var(--color-accent);
   font-weight: 500;
 }
 
 .nav-pipe {
-  color: #1F1F23;
+  color: var(--color-ink);
   opacity: 0.3;
   user-select: none;
 }

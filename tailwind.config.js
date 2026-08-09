@@ -4,12 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        cream: '#FEF8EF',
-        surface: '#FFFFFF',
-        ink: '#1F1F23',
-        muted: '#6B7280',
-        accent: '#3B82F6',
-        'accent-hover': '#2563EB',
+        cream: 'var(--color-cream)',
+        surface: 'var(--color-surface)',
+        ink: 'var(--color-ink)',
+        muted: 'var(--color-muted)',
+        accent: 'var(--color-accent)',
+        'accent-hover': 'var(--color-accent-hover)',
       },
       fontFamily: {
         display: ['"Inter"', 'system-ui', 'sans-serif'],
