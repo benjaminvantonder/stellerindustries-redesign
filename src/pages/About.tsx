@@ -17,7 +17,7 @@ export default function About() {
         <section className="min-h-[70vh] flex items-center">
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
             <Reveal direction="left">
-              <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-bold text-ink leading-[0.9]">
+              <h1 className="font-display text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-ink leading-[0.9]">
                 Steller
               </h1>
             </Reveal>
