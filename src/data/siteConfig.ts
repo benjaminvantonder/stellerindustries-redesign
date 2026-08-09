@@ -1,8 +1,9 @@
 export const siteConfig = {
-  name: 'Meridian Press',
-  tagline: 'Independent Publishing',
+  name: 'Steller Industries',
+  tagline: 'Excellence in Sound, Light, and Vision',
   description:
-    'Independent publishing for literary fiction, essays, and cultural criticism.',
-  url: 'https://meridianpress.com',
-  email: 'submissions@meridianpress.com',
+    "South Africa's premier sound, lighting, and visual experiences for events of every scale.",
+  url: 'https://stellerindustries.co.za',
+  email: 'info@stellerindustries.co.za',
+  phone: '+27 XX XXX XXXX',
 }

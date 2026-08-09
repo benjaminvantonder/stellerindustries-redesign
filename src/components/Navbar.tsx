@@ -3,9 +3,11 @@ import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
 const navLinks = [
-  { to: '/catalog', label: 'Catalog' },
-  { to: '/authors', label: 'Authors' },
-  { to: '/journal', label: 'Journal' },
+  { to: '/', label: 'Home' },
+  { to: '/about', label: 'About' },
+  { to: '/services', label: 'Services' },
+  { to: '/work', label: 'Work' },
+  { to: '/testimonials', label: 'Testimonials' },
   { to: '/contact', label: 'Contact' },
 ]
 
@@ -14,21 +16,21 @@ export default function Navbar() {
   const location = useLocation()
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-md">
-      <nav className="max-w-content mx-auto px-8 h-20 flex items-center justify-between border-b border-ink/10">
-        <Link to="/" className="font-display text-xl font-semibold text-ink tracking-editorial uppercase">
-          Meridian
+    <header className="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md border-b border-white/5">
+      <nav className="max-w-content mx-auto px-8 h-20 flex items-center justify-between">
+        <Link to="/" className="font-display text-xl font-bold text-paper tracking-tight">
+          Steller
         </Link>
 
-        <ul className="hidden md:flex items-center gap-10">
+        <ul className="hidden md:flex items-center gap-8">
           {navLinks.map(({ to, label }) => (
             <li key={to}>
               <Link
                 to={to}
-                className={`text-sm tracking-editorial transition-colors duration-200 ${
+                className={`text-sm font-medium transition-colors duration-200 ${
                   location.pathname === to
-                    ? 'text-terracotta'
-                    : 'text-warmgray hover:text-ink'
+                    ? 'text-accent'
+                    : 'text-muted hover:text-paper'
                 }`}
               >
                 {label}
@@ -38,7 +40,7 @@ export default function Navbar() {
         </ul>
 
         <button
-          className="md:hidden text-ink p-2"
+          className="md:hidden text-paper p-2"
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? 'Close menu' : 'Open menu'}
         >
@@ -47,17 +49,17 @@ export default function Navbar() {
       </nav>
 
       {isOpen && (
-        <div className="md:hidden bg-cream/95 backdrop-blur-lg border-b border-ink/10">
+        <div className="md:hidden bg-surface/95 backdrop-blur-lg border-t border-white/5">
           <ul className="flex flex-col px-8 py-4 gap-1">
             {navLinks.map(({ to, label }) => (
               <li key={to}>
                 <Link
                   to={to}
                   onClick={() => setIsOpen(false)}
-                  className={`text-sm tracking-editorial block py-3 transition-colors duration-200 ${
+                  className={`text-sm font-medium block py-3 transition-colors duration-200 ${
                     location.pathname === to
-                      ? 'text-terracotta'
-                      : 'text-warmgray hover:text-ink'
+                      ? 'text-accent'
+                      : 'text-muted hover:text-paper'
                   }`}
                 >
                   {label}

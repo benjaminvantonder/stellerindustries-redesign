@@ -1,60 +1,72 @@
 import { Link } from 'react-router-dom'
 
+const footerLinks = [
+  { to: '/about', label: 'About' },
+  { to: '/services', label: 'Services' },
+  { to: '/work', label: 'Work' },
+  { to: '/testimonials', label: 'Testimonials' },
+  { to: '/contact', label: 'Contact' },
+]
+
 export default function Footer() {
   return (
-    <footer className="border-t border-ink/10">
-      <div className="max-w-content mx-auto px-8 py-16">
+    <footer className="border-t border-white/5">
+      <div className="max-w-content mx-auto px-8 py-20">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12">
           <div>
-            <Link to="/" className="font-display text-lg font-semibold text-ink tracking-editorial uppercase">
-              Meridian Press
+            <Link to="/" className="font-display text-xl font-bold text-paper tracking-tight">
+              Steller
             </Link>
-            <p className="mt-3 text-sm text-warmgray leading-relaxed max-w-xs">
-              Independent publishing for literary fiction, essays, and cultural criticism.
+            <p className="mt-4 text-sm text-muted leading-relaxed max-w-xs">
+              Sound. Light. Vision. Excellence in event production across South Africa.
             </p>
           </div>
 
           <div className="flex gap-16">
             <div>
               <ul className="space-y-2.5">
-                <li>
-                  <Link to="/catalog" className="text-sm text-warmgray hover:text-ink transition-colors duration-200">
-                    Catalog
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/authors" className="text-sm text-warmgray hover:text-ink transition-colors duration-200">
-                    Authors
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/journal" className="text-sm text-warmgray hover:text-ink transition-colors duration-200">
-                    Journal
-                  </Link>
-                </li>
+                {footerLinks.map(({ to, label }) => (
+                  <li key={to}>
+                    <Link
+                      to={to}
+                      className="text-sm text-muted hover:text-paper transition-colors duration-200"
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
             <div>
               <ul className="space-y-2.5">
                 <li>
-                  <Link to="/contact" className="text-sm text-warmgray hover:text-ink transition-colors duration-200">
-                    Submissions
-                  </Link>
-                </li>
-                <li>
-                  <a href="mailto:submissions@meridianpress.com" className="text-sm text-warmgray hover:text-ink transition-colors duration-200">
-                    submissions@meridianpress.com
+                  <a
+                    href="mailto:info@stellerindustries.co.za"
+                    className="text-sm text-muted hover:text-paper transition-colors duration-200"
+                  >
+                    info@stellerindustries.co.za
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="https://wa.me/27000000000"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-muted hover:text-paper transition-colors duration-200"
+                  >
+                    WhatsApp
+                  </a>
+                </li>
+                <li className="text-sm text-muted/50">South Africa</li>
               </ul>
             </div>
           </div>
         </div>
 
         <div className="mt-16">
-          <p className="text-xs text-warmgray/50">
-            &copy; {new Date().getFullYear()} Meridian Press. All rights reserved.
+          <p className="text-xs text-muted/30">
+            &copy; {new Date().getFullYear()} Steller Industries
           </p>
         </div>
       </div>
