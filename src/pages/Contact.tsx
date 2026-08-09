@@ -10,7 +10,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    event: '',
+    subject: '',
     message: '',
   })
 
@@ -33,7 +33,7 @@ export default function Contact() {
 
       if (res.ok) {
         setStatus('success')
-        setFormData({ name: '', email: '', event: '', message: '' })
+        setFormData({ name: '', email: '', subject: '', message: '' })
       } else {
         setStatus('error')
       }
@@ -43,46 +43,46 @@ export default function Contact() {
   }
 
   const inputClass =
-    'w-full bg-ink/40 border border-white/10 px-5 py-3.5 text-paper text-sm placeholder:text-mute/40 focus:outline-none focus:border-gold/50 transition-colors'
+    'w-full bg-sand/50 border border-ink/10 px-5 py-3.5 text-ink text-sm placeholder:text-warmgray/50 focus:outline-none focus:border-terracotta/40 transition-colors font-body'
 
   return (
     <>
       <Helmet>
-        <title>Contact — Steller Industries</title>
+        <title>Contact — Meridian Press</title>
         <meta
           name="description"
-          content="Get in touch with Steller Industries for sound, lighting, and visual experiences for your event."
+          content="Get in touch with Meridian Press — submissions, inquiries, and general correspondence."
         />
       </Helmet>
 
       <div className="pt-32">
         <section className="py-16 md:py-24">
-          <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
+          <div className="max-w-content mx-auto px-8">
             <Reveal>
-              <h1 className="font-display text-5xl md:text-7xl font-bold text-paper leading-[0.95]">
-                Get in touch.
+              <h1 className="font-display text-5xl md:text-7xl font-bold text-ink leading-[0.95] max-w-3xl">
+                Contact
               </h1>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <p className="mt-8 text-mute text-lg md:text-xl leading-relaxed max-w-2xl">
-                Ready to start your production? We&apos;d love to hear about your event.
+              <p className="mt-8 text-warmgray text-lg md:text-xl leading-relaxed max-w-2xl">
+                For submissions, press inquiries, or general correspondence.
               </p>
             </Reveal>
           </div>
         </section>
 
-        <section className="pb-32">
-          <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
+        <div className="editorial-rule max-w-content mx-auto" />
+
+        <section className="py-16 md:py-24">
+          <div className="max-w-content mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-20">
               {/* Form */}
               <div className="lg:col-span-3">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <Reveal>
                     <div>
-                      <label htmlFor="name" className="block text-sm text-mute mb-2">
-                        Name
-                      </label>
+                      <label htmlFor="name" className="block text-sm text-ink mb-2">Name</label>
                       <input
                         id="name"
                         type="text"
@@ -97,9 +97,7 @@ export default function Contact() {
 
                   <Reveal delay={0.05}>
                     <div>
-                      <label htmlFor="email" className="block text-sm text-mute mb-2">
-                        Email
-                      </label>
+                      <label htmlFor="email" className="block text-sm text-ink mb-2">Email</label>
                       <input
                         id="email"
                         type="email"
@@ -107,40 +105,36 @@ export default function Contact() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className={inputClass}
-                        placeholder="you@company.co.za"
+                        placeholder="you@example.com"
                       />
                     </div>
                   </Reveal>
 
                   <Reveal delay={0.1}>
                     <div>
-                      <label htmlFor="event" className="block text-sm text-mute mb-2">
-                        Event Type
-                      </label>
+                      <label htmlFor="subject" className="block text-sm text-ink mb-2">Subject</label>
                       <input
-                        id="event"
+                        id="subject"
                         type="text"
-                        value={formData.event}
-                        onChange={(e) => setFormData({ ...formData, event: e.target.value })}
+                        value={formData.subject}
+                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         className={inputClass}
-                        placeholder="e.g. Corporate gala, festival, product launch"
+                        placeholder="e.g. Manuscript submission, Press inquiry"
                       />
                     </div>
                   </Reveal>
 
                   <Reveal delay={0.15}>
                     <div>
-                      <label htmlFor="message" className="block text-sm text-mute mb-2">
-                        Message
-                      </label>
+                      <label htmlFor="message" className="block text-sm text-ink mb-2">Message</label>
                       <textarea
                         id="message"
                         required
-                        rows={5}
+                        rows={6}
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         className={`${inputClass} resize-none`}
-                        placeholder="Tell us about your event..."
+                        placeholder="Your message..."
                       />
                     </div>
                   </Reveal>
@@ -150,16 +144,16 @@ export default function Contact() {
                       <button
                         type="submit"
                         disabled={status === 'sending'}
-                        className="bg-gold text-void text-sm font-medium px-7 py-3.5 hover:bg-gold/90 transition-colors duration-200 disabled:opacity-50"
+                        className="bg-ink text-cream text-sm tracking-editorial px-7 py-3.5 hover:bg-ink/80 transition-colors duration-200 disabled:opacity-50"
                       >
                         {status === 'sending' ? 'Sending...' : 'Send Message'}
                       </button>
 
                       {status === 'success' && (
-                        <span className="text-sm text-green-400">Sent successfully</span>
+                        <span className="text-sm text-sage">Sent successfully</span>
                       )}
                       {status === 'error' && (
-                        <span className="text-sm text-red-400">
+                        <span className="text-sm text-terracotta">
                           {!endpoint ? 'Form not configured' : 'Failed to send'}
                         </span>
                       )}
@@ -168,46 +162,42 @@ export default function Contact() {
                 </form>
               </div>
 
-              {/* Contact info */}
+              {/* Submission guidelines */}
               <div className="lg:col-span-2">
                 <Reveal delay={0.2}>
                   <div className="space-y-10">
                     <div>
-                      <p className="text-sm text-mute mb-2">Email</p>
-                      <a
-                        href="mailto:info@stellerindustries.co.za"
-                        className="text-paper hover:text-gold transition-colors"
-                      >
-                        info@stellerindustries.co.za
-                      </a>
-                    </div>
-
-                    <div>
-                      <p className="text-sm text-mute mb-2">Phone</p>
-                      <p className="text-paper">+27 XX XXX XXXX</p>
-                    </div>
-
-                    <div>
-                      <p className="text-sm text-mute mb-2">WhatsApp</p>
-                      <a
-                        href="https://wa.me/27000000000"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block border border-white/15 text-paper text-sm px-5 py-2.5 hover:border-white/30 transition-colors duration-200"
-                      >
-                        Chat on WhatsApp
-                      </a>
-                    </div>
-
-                    <div>
-                      <p className="text-sm text-mute mb-2">Location</p>
-                      <p className="text-paper">South Africa</p>
-                    </div>
-
-                    <div className="pt-6">
-                      <p className="text-sm text-mute/50">
-                        We typically respond within 24 hours during business days.
+                      <h3 className="font-display text-lg font-semibold text-ink mb-3">Submission Guidelines</h3>
+                      <p className="text-warmgray leading-relaxed">
+                        We accept unsolicited manuscripts in literary fiction, essay collections, and poetry. We do not currently accept genre fiction, children&apos;s books, or self-help.
                       </p>
+                    </div>
+
+                    <div>
+                      <h3 className="font-display text-lg font-semibold text-ink mb-3">What to Include</h3>
+                      <ul className="text-warmgray leading-relaxed space-y-1">
+                        <li>A brief cover letter</li>
+                        <li>A one-page synopsis</li>
+                        <li>The first three chapters or 30 pages</li>
+                        <li>A short author biography</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h3 className="font-display text-lg font-semibold text-ink mb-3">Response Time</h3>
+                      <p className="text-warmgray leading-relaxed">
+                        We respond to all submissions within twelve weeks. If you haven&apos;t heard from us by then, please feel free to follow up.
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="font-display text-lg font-semibold text-ink mb-3">Email</h3>
+                      <a
+                        href="mailto:submissions@meridianpress.com"
+                        className="text-terracotta hover:text-terracotta/80 transition-colors"
+                      >
+                        submissions@meridianpress.com
+                      </a>
                     </div>
                   </div>
                 </Reveal>

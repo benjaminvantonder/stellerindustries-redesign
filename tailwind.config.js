@@ -4,18 +4,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        void: '#0A0806',
-        ink: '#17130C',
-        gold: '#C9A227',
-        paper: '#F7F3EC',
-        mute: '#8A7F6B',
+        cream: '#FAF6EE',
+        ink: '#1A1A18',
+        terracotta: '#C4724E',
+        sage: '#7A8B6F',
+        warmgray: '#B8AFA4',
+        sand: '#E8E0D4',
       },
       fontFamily: {
-        display: ['Fraunces', 'Georgia', 'serif'],
-        sans: ['"Switzer"', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
+        body: ['Lora', 'Georgia', 'serif'],
+        sans: ['Lora', 'Georgia', 'serif'],
       },
       maxWidth: {
-        content: '72rem',
+        content: '68rem',
+        prose: '40rem',
+      },
+      letterSpacing: {
+        editorial: '0.08em',
+        masthead: '0.18em',
       },
     },
   },

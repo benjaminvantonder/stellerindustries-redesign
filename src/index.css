@@ -4,46 +4,30 @@
 
 @layer base {
   body {
-    @apply bg-void text-paper font-sans antialiased;
+    @apply bg-cream text-ink font-body antialiased;
   }
 
   ::selection {
-    background: rgba(201, 162, 39, 0.3);
-    color: #F7F3EC;
+    background: rgba(196, 114, 78, 0.2);
+    color: #1A1A18;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
   }
 }
 
 @layer components {
-  .spotlight {
-    position: relative;
-    overflow: hidden;
+  .editorial-rule {
+    @apply w-full h-px bg-ink/10;
   }
 
-  .spotlight::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      ellipse 70% 55% at 50% 35%,
-      rgba(201, 162, 39, 0.18) 0%,
-      rgba(201, 162, 39, 0.06) 40%,
-      transparent 70%
-    );
-    opacity: 0;
-    animation: spotlight-up 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-    pointer-events: none;
-    z-index: 1;
+  .editorial-rule-thick {
+    @apply w-full h-[2px] bg-ink;
   }
 
-  @keyframes spotlight-up {
-    0% {
-      opacity: 0;
-      transform: scale(0.85) translateY(12px);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
+  .pull-quote {
+    @apply font-display text-2xl md:text-3xl lg:text-4xl text-ink leading-snug italic;
   }
 }
 
@@ -54,11 +38,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .spotlight::before {
-    animation: none !important;
-    opacity: 1 !important;
-  }
-
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
