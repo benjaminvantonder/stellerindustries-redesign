@@ -25,12 +25,12 @@ export default function Home() {
             alt=""
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-base/90 via-base/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
         </div>
 
         <div className="relative z-10 pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full pt-24">
           <Reveal direction="left">
-            <h1 className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] font-bold text-ink leading-[0.9] tracking-tight">
+            <h1 className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] font-bold text-white leading-[0.9] tracking-tight" style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}>
               Sound.
               <br />
               Light.
@@ -40,7 +40,7 @@ export default function Home() {
           </Reveal>
 
           <Reveal direction="left" delay={0.1}>
-            <p className="mt-8 text-muted text-lg md:text-xl max-w-lg leading-relaxed">
+            <p className="mt-8 text-white/80 text-lg md:text-xl max-w-lg leading-relaxed">
               Excellence in sound, lighting, and visual experiences for events across South Africa.
             </p>
           </Reveal>
@@ -49,13 +49,13 @@ export default function Home() {
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 bg-ink text-surface text-sm font-semibold px-7 py-3.5 hover:bg-ink/80 transition-all duration-300 rounded-full"
+                className="inline-flex items-center gap-2 bg-white text-ink text-sm font-semibold px-7 py-3.5 hover:bg-white/90 transition-all duration-300 rounded-full"
               >
                 Start a Project
               </Link>
               <Link
                 to="/work"
-                className="inline-flex items-center gap-2 border-2 border-ink/20 text-ink text-sm px-7 py-3.5 hover:border-ink hover:bg-ink hover:text-surface transition-all duration-300 rounded-full"
+                className="inline-flex items-center gap-2 border-2 border-white/40 text-white text-sm px-7 py-3.5 hover:border-white hover:bg-white/10 transition-all duration-300 rounded-full"
               >
                 View Our Work
               </Link>
