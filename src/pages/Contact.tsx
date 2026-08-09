@@ -43,7 +43,7 @@ export default function Contact() {
   }
 
   const inputClass =
-    'w-full bg-surface border border-ink/10 px-5 py-3.5 text-ink text-sm placeholder:text-muted/40 focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all duration-300 rounded-lg'
+    'w-full bg-white border-2 border-ink/10 px-5 py-3.5 text-ink text-sm placeholder:text-muted/40 focus:outline-none focus:border-accent transition-all duration-300 rounded-xl'
 
   return (
     <>
@@ -150,7 +150,7 @@ export default function Contact() {
                       <button
                         type="submit"
                         disabled={status === 'sending'}
-                        className="btn-kinetic bg-accent text-surface text-sm font-semibold px-7 py-3.5 hover:bg-accent-hover hover:shadow-kinetic-accent transition-all duration-300 disabled:opacity-50 rounded-lg"
+                        className="bg-ink text-surface text-sm font-semibold px-7 py-3.5 hover:bg-ink/80 transition-all duration-300 disabled:opacity-50 rounded-full"
                       >
                         {status === 'sending' ? 'Sending...' : 'Send Message'}
                       </button>
@@ -176,7 +176,7 @@ export default function Contact() {
                       <p className="text-sm text-ink font-medium mb-2">Email</p>
                       <a
                         href="mailto:info@stellerindustries.co.za"
-                        className="link-kinetic text-muted hover:text-accent transition-colors"
+                        className="text-muted hover:text-accent transition-colors"
                       >
                         info@stellerindustries.co.za
                       </a>
@@ -193,7 +193,7 @@ export default function Contact() {
                         href="https://wa.me/27000000000"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn-kinetic inline-block border border-ink/15 text-ink text-sm px-5 py-2.5 hover:border-accent hover:text-accent transition-all duration-300 rounded-lg"
+                        className="inline-block border-2 border-ink/15 text-ink text-sm px-5 py-2.5 hover:border-ink hover:bg-ink hover:text-surface transition-all duration-300 rounded-full"
                       >
                         Chat on WhatsApp
                       </a>

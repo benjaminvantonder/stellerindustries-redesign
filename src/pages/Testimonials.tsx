@@ -44,7 +44,7 @@ export default function Testimonials() {
                   </blockquote>
 
                   <div className="mt-10 flex items-baseline gap-4">
-                    <div className="w-8 h-px bg-accent/40" />
+                    <div className="w-8 h-px bg-ink/20" />
                     <div>
                       <p className="text-ink text-sm font-medium">{t.name}</p>
                       <p className="text-muted/50 text-sm mt-0.5">
@@ -64,7 +64,7 @@ export default function Testimonials() {
                   key={i}
                   onClick={() => setCurrent(i)}
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    i === current ? 'bg-accent scale-125' : 'bg-ink/15 hover:bg-ink/30'
+                    i === current ? 'bg-ink scale-125' : 'bg-ink/15 hover:bg-ink/30'
                   }`}
                   aria-label={`Go to testimonial ${i + 1}`}
                 />

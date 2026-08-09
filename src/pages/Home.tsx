@@ -25,7 +25,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-base/90 via-base/50 to-transparent" />
         </div>
 
-        <div className="relative z-10 pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
+        <div className="relative z-10 pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full pt-24">
           <Reveal direction="left">
             <h1 className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] font-bold text-ink leading-[0.9] tracking-tight">
               Sound.
@@ -46,13 +46,13 @@ export default function Home() {
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 to="/contact"
-                className="btn-kinetic inline-flex items-center gap-2 bg-accent text-surface text-sm font-semibold px-7 py-3.5 hover:bg-accent-hover hover:shadow-kinetic-accent transition-all duration-300"
+                className="inline-flex items-center gap-2 bg-ink text-surface text-sm font-semibold px-7 py-3.5 hover:bg-ink/80 transition-all duration-300 rounded-full"
               >
                 Start a Project
               </Link>
               <Link
                 to="/work"
-                className="btn-kinetic inline-flex items-center gap-2 border border-ink/15 text-ink text-sm px-7 py-3.5 hover:border-accent hover:text-accent transition-all duration-300"
+                className="inline-flex items-center gap-2 border-2 border-ink/20 text-ink text-sm px-7 py-3.5 hover:border-ink hover:bg-ink hover:text-surface transition-all duration-300 rounded-full"
               >
                 View Our Work
               </Link>
@@ -62,7 +62,7 @@ export default function Home() {
       </section>
 
       {/* Statement */}
-      <section className="py-32 md:py-44 bg-surface">
+      <section className="py-32 md:py-44">
         <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto">
           <Reveal>
             <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-ink leading-[1.1] max-w-3xl text-balance">
@@ -82,7 +82,7 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <section className="py-32 md:py-44">
+      <section className="py-32 md:py-44 bg-white">
         <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto">
           <Reveal>
             <h2 className="font-display text-sm text-accent tracking-widest uppercase mb-16 font-semibold">
@@ -93,7 +93,7 @@ export default function Home() {
           <div className="space-y-10 md:space-y-14">
             {services.map((service, i) => (
               <Reveal key={service.title} delay={i * 0.05} direction={i % 2 === 0 ? 'left' : 'right'}>
-                <div className="card-kinetic p-8">
+                <div className="border-l-2 border-ink/10 pl-6">
                   <h3 className="font-display text-xl md:text-2xl font-semibold text-ink">
                     {service.title}
                   </h3>
@@ -109,7 +109,7 @@ export default function Home() {
             <div className="mt-16">
               <Link
                 to="/services"
-                className="link-kinetic text-accent text-sm font-semibold hover:text-accent-hover transition-colors"
+                className="text-accent text-sm font-semibold hover:text-accent-hover transition-colors"
               >
                 All services &rarr;
               </Link>
@@ -119,7 +119,7 @@ export default function Home() {
       </section>
 
       {/* Testimonial */}
-      <section className="py-32 md:py-44 bg-surface">
+      <section className="py-32 md:py-44">
         <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto">
           <Reveal>
             <blockquote className="font-display text-2xl md:text-4xl lg:text-5xl text-ink leading-snug max-w-4xl">
@@ -127,7 +127,7 @@ export default function Home() {
               sound transition was perfectly timed.&rdquo;
             </blockquote>
             <div className="mt-8 flex items-baseline gap-4">
-              <div className="w-8 h-px bg-accent/40" />
+              <div className="w-8 h-px bg-ink/20" />
               <div>
                 <p className="text-ink text-sm font-medium">Naledi Mokoena</p>
                 <p className="text-muted/50 text-sm mt-0.5">Production Manager &middot; Music Festival</p>
@@ -138,7 +138,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 md:py-44">
+      <section className="py-32 md:py-44 bg-white">
         <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto">
           <Reveal>
             <h2 className="font-display text-3xl md:text-5xl font-bold text-ink leading-tight max-w-2xl">
@@ -147,7 +147,7 @@ export default function Home() {
             <div className="mt-10">
               <Link
                 to="/contact"
-                className="btn-kinetic inline-flex items-center gap-2 bg-accent text-surface text-sm font-semibold px-7 py-3.5 hover:bg-accent-hover hover:shadow-kinetic-accent transition-all duration-300"
+                className="inline-flex items-center gap-2 bg-ink text-surface text-sm font-semibold px-7 py-3.5 hover:bg-ink/80 transition-all duration-300 rounded-full"
               >
                 Get in Touch
               </Link>

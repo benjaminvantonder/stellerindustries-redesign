@@ -33,7 +33,7 @@ export default function About() {
             </Reveal>
 
             <Reveal direction="left" delay={0.2}>
-              <blockquote className="mt-16 pl-6 border-l-2 border-accent/30">
+              <blockquote className="mt-16 pl-6 border-l-2 border-ink/20">
                 <p className="font-display text-2xl md:text-3xl text-ink leading-relaxed">
                   &ldquo;Recognised for our quality, memorable for our character.&rdquo;
                 </p>
@@ -43,7 +43,7 @@ export default function About() {
         </section>
 
         {/* Philosophy */}
-        <section className="py-32 md:py-40 bg-surface">
+        <section className="py-32 md:py-40 bg-white">
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
             <Reveal>
               <h2 className="font-display text-3xl md:text-5xl font-bold text-ink leading-tight max-w-2xl">
@@ -100,7 +100,7 @@ export default function About() {
         </section>
 
         {/* Stats */}
-        <section className="py-32 md:py-40 bg-surface">
+        <section className="py-32 md:py-40 bg-white">
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
             <Reveal>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-12">

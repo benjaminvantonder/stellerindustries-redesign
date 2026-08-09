@@ -46,7 +46,7 @@ export default function Services() {
             {services.map((service, i) => (
               <Reveal key={service.title} delay={i * 0.06} direction={i % 2 === 0 ? 'left' : 'right'}>
                 <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center ${i % 2 === 1 ? 'md:[direction:rtl]' : ''}`}>
-                  <div className="aspect-[4/3] bg-elevated overflow-hidden rounded-lg shadow-kinetic md:[direction:ltr]">
+                  <div className="aspect-[4/3] bg-ink/5 overflow-hidden rounded-2xl md:[direction:ltr]">
                     <img
                       src={serviceImages[i]}
                       alt={service.title}
@@ -75,7 +75,7 @@ export default function Services() {
               <p className="text-muted mb-6">Ready to discuss your production?</p>
               <Link
                 to="/contact"
-                className="btn-kinetic inline-flex items-center gap-2 bg-accent text-surface text-sm font-semibold px-7 py-3.5 hover:bg-accent-hover hover:shadow-kinetic-accent transition-all duration-300"
+                className="inline-flex items-center gap-2 bg-ink text-surface text-sm font-semibold px-7 py-3.5 hover:bg-ink/80 transition-all duration-300 rounded-full"
               >
                 Get in Touch
               </Link>

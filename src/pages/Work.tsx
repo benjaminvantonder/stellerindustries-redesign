@@ -45,8 +45,8 @@ export default function Work() {
             <div className="space-y-20">
               {portfolio.map((item, i) => (
                 <Reveal key={item.id} delay={i * 0.05} direction={i % 2 === 0 ? 'left' : 'right'}>
-                  <article className="card-kinetic overflow-hidden">
-                    <div className="aspect-[16/9] bg-elevated overflow-hidden">
+                  <article className="overflow-hidden rounded-2xl border border-ink/10">
+                    <div className="aspect-[16/9] bg-ink/5 overflow-hidden">
                       <img
                         src={images[i]}
                         alt={item.title}

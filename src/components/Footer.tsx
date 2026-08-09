@@ -10,7 +10,7 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-elevated border-t border-ink/5">
+    <footer className="border-t-2 border-ink/10">
       <div className="max-w-content mx-auto px-8 py-16">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12">
           <div>
@@ -29,7 +29,7 @@ export default function Footer() {
                   <li key={to}>
                     <Link
                       to={to}
-                      className="link-kinetic text-sm text-muted hover:text-ink transition-colors duration-200"
+                      className="text-sm text-muted hover:text-ink transition-colors duration-200"
                     >
                       {label}
                     </Link>
@@ -43,7 +43,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="mailto:info@stellerindustries.co.za"
-                    className="link-kinetic text-sm text-muted hover:text-ink transition-colors duration-200"
+                    className="text-sm text-muted hover:text-ink transition-colors duration-200"
                   >
                     info@stellerindustries.co.za
                   </a>
@@ -53,7 +53,7 @@ export default function Footer() {
                     href="https://wa.me/27000000000"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="link-kinetic text-sm text-muted hover:text-ink transition-colors duration-200"
+                    className="text-sm text-muted hover:text-ink transition-colors duration-200"
                   >
                     WhatsApp
                   </a>

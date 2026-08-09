@@ -4,14 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        base: '#F8F9FA',
+        cream: '#FEF8EF',
         surface: '#FFFFFF',
-        elevated: '#F0F1F3',
-        ink: '#1A1A1A',
+        ink: '#1F1F23',
         muted: '#6B7280',
         accent: '#3B82F6',
         'accent-hover': '#2563EB',
-        'accent-light': '#DBEAFE',
       },
       fontFamily: {
         display: ['"Inter"', 'system-ui', 'sans-serif'],
@@ -23,7 +21,6 @@ export default {
       boxShadow: {
         'kinetic': '0 4px 20px rgba(0, 0, 0, 0.06)',
         'kinetic-hover': '0 8px 30px rgba(0, 0, 0, 0.1)',
-        'kinetic-accent': '0 4px 20px rgba(59, 130, 246, 0.2)',
       },
     },
   },
