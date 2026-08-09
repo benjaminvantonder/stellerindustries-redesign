@@ -36,7 +36,7 @@ export default function Navbar() {
                 to={to}
                 className={`text-sm font-medium px-4 py-2 rounded-full border transition-all duration-200 ${
                   location.pathname === to
-                    ? 'border-accent text-accent'
+                    ? scrolled ? 'border-accent text-accent' : 'bg-white text-accent border-white'
                     : 'border-ink/20 text-ink hover:bg-ink hover:text-white hover:border-ink'
                 }`}
               >
