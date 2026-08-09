@@ -19,7 +19,8 @@
 
 @layer components {
   .btn-kinetic {
-    @apply relative overflow-hidden transition-all duration-300 ease-kinetic;
+    @apply relative overflow-hidden transition-all duration-300;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 
   .btn-kinetic::after {
@@ -32,7 +33,8 @@
   }
 
   .card-kinetic {
-    @apply bg-surface rounded-lg shadow-kinetic transition-all duration-300 ease-kinetic;
+    @apply bg-surface rounded-lg shadow-kinetic transition-all duration-300;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 
   .card-kinetic:hover {
@@ -45,7 +47,8 @@
 
   .link-kinetic::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 ease-kinetic;
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 
   .link-kinetic:hover::after {
@@ -59,11 +62,11 @@
   }
 
   .slide-in-left {
-    animation: slideInLeft 0.5s ease-kinetic forwards;
+    animation: slideInLeft 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
   }
 
   .slide-in-right {
-    animation: slideInRight 0.5s ease-kinetic forwards;
+    animation: slideInRight 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
   }
 
   @keyframes slideInLeft {

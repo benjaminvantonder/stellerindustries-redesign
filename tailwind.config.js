@@ -25,9 +25,6 @@ export default {
         'kinetic-hover': '0 8px 30px rgba(0, 0, 0, 0.1)',
         'kinetic-accent': '0 4px 20px rgba(59, 130, 246, 0.2)',
       },
-      transitionTimingFunction: {
-        'kinetic': 'cubic-bezier(0.25, 0.1, 0.25, 1)',
-      },
     },
   },
   plugins: [],
