@@ -14,6 +14,9 @@ export default function Home() {
         />
       </Helmet>
 
+      {/* Cream strip for notch blending */}
+      <div className="h-10 bg-cream" />
+
       {/* Hero */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0">
