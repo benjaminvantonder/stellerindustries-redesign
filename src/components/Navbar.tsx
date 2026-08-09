@@ -96,7 +96,7 @@ export default function Navbar() {
         />
       </button>
 
-      {/* Mobile dropdown */}
+      {/* Mobile dropdown — spans full viewport width regardless of nav margins */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -104,14 +104,15 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 right-0 bg-surface border-b-2 border-ink md:hidden z-50"
+            className="fixed left-0 right-0 top-[64px] md:hidden z-50"
+            style={{ background: "var(--color-surface)", borderBottom: "2px solid var(--color-ink)" }}
           >
-            <div className="flex flex-col px-6 py-5 gap-3">
+            <div className="px-6 py-5 flex flex-col gap-3">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`text-sm transition-opacity hover:opacity-70 ${location.pathname === link.path ? "font-semibold" : ""}`}
+                  className={`text-base transition-opacity hover:opacity-70 ${location.pathname === link.path ? "font-semibold" : ""}`}
                   style={{ color: "var(--color-ink)" }}
                 >
                   {link.label}

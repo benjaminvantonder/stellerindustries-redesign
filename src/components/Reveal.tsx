@@ -25,8 +25,8 @@ export default function Reveal({ children, className = '', delay = 0, direction 
 
   const variants = {
     up: { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } },
-    left: { initial: { opacity: 0, x: -30 }, animate: { opacity: 1, x: 0 } },
-    right: { initial: { opacity: 0, x: 30 }, animate: { opacity: 1, x: 0 } },
+    left: { initial: { opacity: 0, x: -20 }, animate: { opacity: 1, x: 0 } },
+    right: { initial: { opacity: 0, x: 20 }, animate: { opacity: 1, x: 0 } },
   }
 
   return (
