@@ -21,13 +21,16 @@
 .navbar-scurve {
   position: fixed;
   top: 0;
-  left: 16px;
-  right: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 1200px;
   z-index: 50;
   background: #FFFFFF;
   border: 2px solid #1F1F23;
   border-top: none;
-  padding: 18px 32px;
+  padding: 16px 32px;
+  margin-top: 0;
 }
 
 /* Top-left corner: convex bump + concave bite */
@@ -89,7 +92,7 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 400;
-  padding: 4px 16px;
+  padding: 4px 8px;
   transition: color 0.2s;
 }
 
