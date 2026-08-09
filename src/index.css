@@ -4,7 +4,11 @@
 
 @layer base {
   body {
-    @apply bg-void text-paper font-sans antialiased;
+    background-color: #0A0A0A;
+    color: #F0F0F0;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
