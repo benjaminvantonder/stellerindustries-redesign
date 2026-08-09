@@ -35,8 +35,8 @@ export default function Navbar() {
         marginRight: scrolled ? 24 : 0,
         marginTop: scrolled ? 16 : 4,
         marginBottom: scrolled ? 0 : 4,
-        paddingLeft: scrolled ? 24 : 40,
-        paddingRight: scrolled ? 24 : 40,
+        paddingLeft: scrolled ? 24 : 20,
+        paddingRight: scrolled ? 24 : 20,
         borderTopLeftRadius: scrolled ? 999 : 0,
         borderTopRightRadius: scrolled ? 999 : 0,
         borderBottomLeftRadius: scrolled ? 999 : 0,
@@ -44,7 +44,7 @@ export default function Navbar() {
         boxShadow: scrolled ? "0 8px 24px rgba(0,0,0,0.12)" : "0 0 0 rgba(0,0,0,0)",
       }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className="fixed top-0 left-0 right-0 z-50 flex h-[72px] items-center justify-between"
+      className="fixed top-0 left-0 right-0 z-50 flex h-[64px] md:h-[72px] items-center justify-between overflow-visible"
       style={{
         background: "var(--color-surface)",
         borderBottom: "2px solid var(--color-ink)",
@@ -53,7 +53,7 @@ export default function Navbar() {
         borderTop: scrolled ? "2px solid var(--color-ink)" : "none",
       }}
     >
-      <Link to="/" className="text-lg font-bold" style={{ color: "var(--color-ink)" }}>
+      <Link to="/" className="text-base md:text-lg font-bold shrink-0" style={{ color: "var(--color-ink)" }}>
         Steller Industries
       </Link>
 
@@ -74,13 +74,26 @@ export default function Navbar() {
 
       {/* Mobile hamburger */}
       <button
-        className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5"
+        className="md:hidden relative flex flex-col justify-center items-center w-10 h-10 shrink-0"
         onClick={() => setMobileOpen(!mobileOpen)}
         aria-label="Toggle menu"
       >
-        <span className="block w-5 h-0.5 bg-ink transition-transform" style={{ transform: mobileOpen ? "rotate(45deg) translateY(4px)" : "none" }} />
-        <span className="block w-5 h-0.5 bg-ink transition-opacity" style={{ opacity: mobileOpen ? 0 : 1 }} />
-        <span className="block w-5 h-0.5 bg-ink transition-transform" style={{ transform: mobileOpen ? "rotate(-45deg) translateY(-4px)" : "none" }} />
+        <span
+          className="block w-5 h-[2px] bg-ink absolute transition-transform duration-200"
+          style={{
+            transform: mobileOpen ? "rotate(45deg)" : "translateY(-4px)",
+          }}
+        />
+        <span
+          className="block w-5 h-[2px] bg-ink absolute transition-opacity duration-200"
+          style={{ opacity: mobileOpen ? 0 : 1 }}
+        />
+        <span
+          className="block w-5 h-[2px] bg-ink absolute transition-transform duration-200"
+          style={{
+            transform: mobileOpen ? "rotate(-45deg)" : "translateY(4px)",
+          }}
+        />
       </button>
 
       {/* Mobile dropdown */}
@@ -91,14 +104,14 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-[72px] left-0 right-0 bg-surface border-b-2 border-ink md:hidden z-50"
+            className="absolute top-full left-0 right-0 bg-surface border-b-2 border-ink md:hidden z-50"
           >
-            <div className="flex flex-col px-10 py-6 gap-4">
+            <div className="flex flex-col px-6 py-5 gap-3">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`text-base transition-opacity hover:opacity-70 ${location.pathname === link.path ? "font-semibold" : ""}`}
+                  className={`text-sm transition-opacity hover:opacity-70 ${location.pathname === link.path ? "font-semibold" : ""}`}
                   style={{ color: "var(--color-ink)" }}
                 >
                   {link.label}
