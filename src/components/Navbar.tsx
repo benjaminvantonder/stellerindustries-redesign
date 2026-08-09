@@ -23,21 +23,21 @@ export default function Navbar() {
   }, [])
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-surface/95 backdrop-blur-md shadow-kinetic' : 'bg-transparent'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-kinetic' : 'bg-transparent'}`}>
       <nav className="max-w-content mx-auto px-8 h-20 flex items-center justify-between">
         <Link to="/" className="font-display text-xl font-bold text-ink tracking-tight">
           Steller
         </Link>
 
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-3">
           {navLinks.map(({ to, label }) => (
             <li key={to}>
               <Link
                 to={to}
-                className={`link-kinetic text-sm font-medium transition-colors duration-200 ${
+                className={`text-sm font-medium px-4 py-2 rounded-full border transition-all duration-200 ${
                   location.pathname === to
-                    ? 'text-accent'
-                    : 'text-muted hover:text-ink'
+                    ? 'border-accent text-accent'
+                    : 'border-ink/20 text-ink hover:bg-ink hover:text-white hover:border-ink'
                 }`}
               >
                 {label}
@@ -56,17 +56,17 @@ export default function Navbar() {
       </nav>
 
       {isOpen && (
-        <div className="md:hidden bg-surface/95 backdrop-blur-lg shadow-kinetic">
-          <ul className="flex flex-col px-8 py-4 gap-1">
+        <div className="md:hidden bg-white shadow-kinetic">
+          <ul className="flex flex-col px-8 py-4 gap-2">
             {navLinks.map(({ to, label }) => (
               <li key={to}>
                 <Link
                   to={to}
                   onClick={() => setIsOpen(false)}
-                  className={`text-sm font-medium block py-3 transition-colors duration-200 ${
+                  className={`text-sm font-medium block px-4 py-2.5 rounded-full border transition-all duration-200 ${
                     location.pathname === to
-                      ? 'text-accent'
-                      : 'text-muted hover:text-ink'
+                      ? 'border-accent text-accent'
+                      : 'border-ink/20 text-ink hover:bg-ink hover:text-white hover:border-ink'
                   }`}
                 >
                   {label}

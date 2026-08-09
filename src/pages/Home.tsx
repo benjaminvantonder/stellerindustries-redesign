@@ -20,9 +20,9 @@ export default function Home() {
           <img
             src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1920&q=80"
             alt=""
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-base via-base/80 to-base/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-base/90 via-base/50 to-transparent" />
         </div>
 
         <div className="relative z-10 pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
