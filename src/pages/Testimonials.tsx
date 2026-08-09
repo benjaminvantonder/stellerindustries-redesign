@@ -34,19 +34,19 @@ export default function Testimonials() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={t.id}
-                  initial={{ opacity: 0, y: 12 }}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
+                  exit={{ opacity: 0, y: -16 }}
                   transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
                 >
-                  <blockquote className="font-display text-3xl md:text-5xl lg:text-6xl text-paper leading-snug max-w-4xl">
+                  <blockquote className="font-display text-3xl md:text-5xl lg:text-6xl text-ink leading-snug max-w-4xl">
                     &ldquo;{t.quote}&rdquo;
                   </blockquote>
 
                   <div className="mt-10 flex items-baseline gap-4">
                     <div className="w-8 h-px bg-accent/40" />
                     <div>
-                      <p className="text-paper text-sm font-medium">{t.name}</p>
+                      <p className="text-ink text-sm font-medium">{t.name}</p>
                       <p className="text-muted/50 text-sm mt-0.5">
                         {t.role}
                         {t.event && <span className="text-accent/30"> &middot; {t.event}</span>}
@@ -63,8 +63,8 @@ export default function Testimonials() {
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
-                  className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                    i === current ? 'bg-accent' : 'bg-white/15 hover:bg-white/30'
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    i === current ? 'bg-accent scale-125' : 'bg-ink/15 hover:bg-ink/30'
                   }`}
                   aria-label={`Go to testimonial ${i + 1}`}
                 />

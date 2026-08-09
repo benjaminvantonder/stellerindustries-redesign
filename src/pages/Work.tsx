@@ -25,13 +25,13 @@ export default function Work() {
       <div className="pt-32">
         <section className="py-16 md:py-24">
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
-            <Reveal>
-              <h1 className="font-display text-5xl md:text-7xl font-bold text-paper leading-[0.95]">
+            <Reveal direction="left">
+              <h1 className="font-display text-5xl md:text-7xl font-bold text-ink leading-[0.95]">
                 Portfolio
               </h1>
             </Reveal>
 
-            <Reveal delay={0.1}>
+            <Reveal direction="left" delay={0.1}>
               <p className="mt-8 text-muted text-lg md:text-xl leading-relaxed max-w-2xl">
                 A selection of productions we&apos;ve delivered — from intimate corporate events
                 to large-scale festival stages.
@@ -44,26 +44,28 @@ export default function Work() {
           <div className="max-w-content mx-auto px-8">
             <div className="space-y-20">
               {portfolio.map((item, i) => (
-                <Reveal key={item.id} delay={i * 0.05}>
-                  <article>
-                    <div className="aspect-[16/9] bg-surface overflow-hidden">
+                <Reveal key={item.id} delay={i * 0.05} direction={i % 2 === 0 ? 'left' : 'right'}>
+                  <article className="card-kinetic overflow-hidden">
+                    <div className="aspect-[16/9] bg-elevated overflow-hidden">
                       <img
                         src={images[i]}
                         alt={item.title}
-                        className="w-full h-full object-cover hover:scale-[1.03] transition-transform duration-700"
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                         loading="lazy"
                       />
                     </div>
-                    <div className="mt-5 flex items-baseline justify-between">
-                      <div>
-                        <h2 className="font-display text-xl md:text-2xl font-semibold text-paper">
-                          {item.title}
-                        </h2>
-                        <p className="mt-2 text-muted leading-relaxed max-w-xl">
-                          {item.description}
-                        </p>
+                    <div className="p-6">
+                      <div className="flex items-baseline justify-between">
+                        <div>
+                          <h2 className="font-display text-xl md:text-2xl font-semibold text-ink">
+                            {item.title}
+                          </h2>
+                          <p className="mt-2 text-muted leading-relaxed max-w-xl">
+                            {item.description}
+                          </p>
+                        </div>
+                        <span className="text-xs text-muted/40 shrink-0 ml-8">{item.year}</span>
                       </div>
-                      <span className="text-xs text-muted/40 shrink-0 ml-8">{item.year}</span>
                     </div>
                   </article>
                 </Reveal>

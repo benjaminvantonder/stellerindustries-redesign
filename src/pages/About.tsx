@@ -16,25 +16,25 @@ export default function About() {
         {/* THE NAME */}
         <section className="min-h-[70vh] flex items-center">
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
-            <Reveal>
-              <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-bold text-paper leading-[0.9]">
+            <Reveal direction="left">
+              <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-bold text-ink leading-[0.9]">
                 Steller
               </h1>
             </Reveal>
 
-            <Reveal delay={0.1}>
+            <Reveal direction="left" delay={0.1}>
               <p className="mt-12 text-muted text-lg md:text-xl leading-relaxed max-w-2xl">
                 The double &ldquo;L&rdquo; is deliberate. Spoken, it sounds like{' '}
-                <em className="text-paper not-italic">stellar</em> — representing excellence.
+                <em className="text-ink not-italic font-medium">stellar</em> — representing excellence.
                 Written, it&apos;s more visually distinctive — just like our photography and
                 videography. A name that embodies our commitment to top-tier sound, lighting, and
                 visual experiences.
               </p>
             </Reveal>
 
-            <Reveal delay={0.2}>
+            <Reveal direction="left" delay={0.2}>
               <blockquote className="mt-16 pl-6 border-l-2 border-accent/30">
-                <p className="font-display text-2xl md:text-3xl text-paper leading-relaxed">
+                <p className="font-display text-2xl md:text-3xl text-ink leading-relaxed">
                   &ldquo;Recognised for our quality, memorable for our character.&rdquo;
                 </p>
               </blockquote>
@@ -43,10 +43,10 @@ export default function About() {
         </section>
 
         {/* Philosophy */}
-        <section className="py-32 md:py-40">
+        <section className="py-32 md:py-40 bg-surface">
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
             <Reveal>
-              <h2 className="font-display text-3xl md:text-5xl font-bold text-paper leading-tight max-w-2xl">
+              <h2 className="font-display text-3xl md:text-5xl font-bold text-ink leading-tight max-w-2xl">
                 Every cue matters. Every transition is intentional.
               </h2>
             </Reveal>
@@ -70,19 +70,19 @@ export default function About() {
 
         {/* Story */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0">
-          <Reveal>
+          <Reveal direction="left">
             <div className="aspect-square md:aspect-auto md:h-full overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=960&q=80"
                 alt="Sound mixing console in a dark venue"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
             </div>
           </Reveal>
           <div className="flex items-center">
-            <Reveal delay={0.1}>
+            <Reveal direction="right" delay={0.1}>
               <div className="p-8 md:p-16">
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-paper leading-tight">
+                <h2 className="font-display text-3xl md:text-4xl font-bold text-ink leading-tight">
                   Built from the ground up, one clean cue at a time.
                 </h2>
                 <p className="mt-6 text-muted text-lg leading-relaxed">
@@ -100,7 +100,7 @@ export default function About() {
         </section>
 
         {/* Stats */}
-        <section className="py-32 md:py-40">
+        <section className="py-32 md:py-40 bg-surface">
           <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
             <Reveal>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-12">

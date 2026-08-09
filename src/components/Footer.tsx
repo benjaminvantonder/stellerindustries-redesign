@@ -10,11 +10,11 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5">
-      <div className="max-w-content mx-auto px-8 py-20">
+    <footer className="bg-elevated border-t border-ink/5">
+      <div className="max-w-content mx-auto px-8 py-16">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12">
           <div>
-            <Link to="/" className="font-display text-xl font-bold text-paper tracking-tight">
+            <Link to="/" className="font-display text-xl font-bold text-ink tracking-tight">
               Steller
             </Link>
             <p className="mt-4 text-sm text-muted leading-relaxed max-w-xs">
@@ -29,7 +29,7 @@ export default function Footer() {
                   <li key={to}>
                     <Link
                       to={to}
-                      className="text-sm text-muted hover:text-paper transition-colors duration-200"
+                      className="link-kinetic text-sm text-muted hover:text-ink transition-colors duration-200"
                     >
                       {label}
                     </Link>
@@ -43,7 +43,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="mailto:info@stellerindustries.co.za"
-                    className="text-sm text-muted hover:text-paper transition-colors duration-200"
+                    className="link-kinetic text-sm text-muted hover:text-ink transition-colors duration-200"
                   >
                     info@stellerindustries.co.za
                   </a>
@@ -53,7 +53,7 @@ export default function Footer() {
                     href="https://wa.me/27000000000"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-muted hover:text-paper transition-colors duration-200"
+                    className="link-kinetic text-sm text-muted hover:text-ink transition-colors duration-200"
                   >
                     WhatsApp
                   </a>
@@ -65,7 +65,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-16">
-          <p className="text-xs text-muted/30">
+          <p className="text-xs text-muted/40">
             &copy; {new Date().getFullYear()} Steller Industries
           </p>
         </div>

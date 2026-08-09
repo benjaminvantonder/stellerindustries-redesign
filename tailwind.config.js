@@ -4,13 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        void: '#0A0A0A',
-        surface: '#141414',
-        elevated: '#1E1E1E',
-        paper: '#F0F0F0',
-        muted: '#6B6B6B',
+        base: '#F8F9FA',
+        surface: '#FFFFFF',
+        elevated: '#F0F1F3',
+        ink: '#1A1A1A',
+        muted: '#6B7280',
         accent: '#3B82F6',
-        'accent-hover': '#60A5FA',
+        'accent-hover': '#2563EB',
+        'accent-light': '#DBEAFE',
       },
       fontFamily: {
         display: ['"Inter"', 'system-ui', 'sans-serif'],
@@ -18,6 +19,14 @@ export default {
       },
       maxWidth: {
         content: '72rem',
+      },
+      boxShadow: {
+        'kinetic': '0 4px 20px rgba(0, 0, 0, 0.06)',
+        'kinetic-hover': '0 8px 30px rgba(0, 0, 0, 0.1)',
+        'kinetic-accent': '0 4px 20px rgba(59, 130, 246, 0.2)',
+      },
+      transitionTimingFunction: {
+        'kinetic': 'cubic-bezier(0.25, 0.1, 0.25, 1)',
       },
     },
   },
