@@ -4,10 +4,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Core palette — monochrome base
         black: '#000000',
         white: '#FFFFFF',
-        // Warm grays for depth
         warm: {
           50: '#FAF9F7',
           100: '#F5F3F0',
@@ -21,19 +19,13 @@ export default {
           900: '#1C1917',
           950: '#0C0A09',
         },
-        // Gold accent
         gold: {
           DEFAULT: '#C9A84C',
           light: '#D4B95E',
           dim: '#9A7B30',
         },
-        // Semantic tokens (CSS variable driven)
-        surface: {
-          DEFAULT: 'var(--color-surface)',
-          raised: 'var(--color-surface-raised)',
-        },
+        surface: 'var(--color-surface)',
         muted: 'var(--color-muted)',
-        border: 'var(--color-border)',
       },
       fontFamily: {
         display: ['"Fraunces"', 'Georgia', 'serif'],
@@ -41,7 +33,6 @@ export default {
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       fontSize: {
-        // Swiss-style type scale — thin weights, large display
         'display-2xl': ['clamp(4rem, 10vw, 9rem)', { lineHeight: '0.88', letterSpacing: '-0.04em', fontWeight: '100' }],
         'display-xl': ['clamp(3rem, 7vw, 7rem)', { lineHeight: '0.92', letterSpacing: '-0.03em', fontWeight: '200' }],
         'display-lg': ['clamp(2.25rem, 5vw, 4.5rem)', { lineHeight: '1.0', letterSpacing: '-0.025em', fontWeight: '200' }],
@@ -60,72 +51,38 @@ export default {
         narrow: '32rem',
       },
       spacing: {
-        // 8pt grid system
-        '0': '0',
-        'px': '1px',
-        '0.5': '0.125rem', // 2px
-        '1': '0.25rem',    // 4px
-        '1.5': '0.375rem', // 6px
-        '2': '0.5rem',     // 8px — base unit
-        '3': '0.75rem',    // 12px
-        '4': '1rem',       // 16px
-        '5': '1.25rem',    // 20px
-        '6': '1.5rem',     // 24px
-        '8': '2rem',       // 32px
-        '10': '2.5rem',    // 40px
-        '12': '3rem',      // 48px
-        '16': '4rem',      // 64px
-        '20': '5rem',      // 80px
-        '24': '6rem',      // 96px
-        '32': '8rem',      // 128px
-        '40': '10rem',     // 160px
-        '48': '12rem',     // 192px
         'section': 'clamp(5rem, 12vw, 10rem)',
         'section-lg': 'clamp(6rem, 15vw, 14rem)',
         'section-xl': 'clamp(8rem, 18vw, 16rem)',
       },
       borderRadius: {
-        'none': '0',
-        'sm': '0.125rem',
-        'DEFAULT': '0.25rem',
-        'md': '0.375rem',
-        'lg': '0.5rem',
+        'organic': '30% 70% 70% 30% / 30% 30% 70% 70%',
+        'organic-alt': '70% 30% 30% 70% / 70% 70% 30% 30%',
+        'blob': '42% 58% 70% 30% / 45% 45% 55% 55%',
       },
-      borderWidth: {
-        '0': '0',
-        'thin': '0.5px',
-        'DEFAULT': '1px',
-        '2': '2px',
+      backdropBlur: {
+        'glass': '20px',
+        'glass-elevated': '30px',
+        'bokeh': '40px',
+        'bokeh-heavy': '60px',
       },
       transitionTimingFunction: {
         'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
-        'in-expo': 'cubic-bezier(0.7, 0, 0.84, 0)',
-        'light': 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-      },
-      transitionDuration: {
-        '400': '400ms',
-        '600': '600ms',
-        '800': '800ms',
-        '1000': '1000ms',
+        'organic': 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       },
       keyframes: {
         'glow-pulse': {
-          '0%, 100%': { opacity: '0.4' },
-          '50%': { opacity: '0.8' },
+          '0%, 100%': { opacity: '0.3' },
+          '50%': { opacity: '0.7' },
         },
-        'fade-in': {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        'slide-up': {
-          '0%': { transform: 'translateY(24px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0) scale(1)' },
+          '50%': { transform: 'translateY(-20px) scale(1.05)' },
         },
       },
       animation: {
-        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
-        'fade-in': 'fade-in 0.6s ease-out forwards',
-        'slide-up': 'slide-up 0.6s ease-out forwards',
+        'glow-pulse': 'glow-pulse 4s ease-in-out infinite',
+        'float': 'float 8s ease-in-out infinite',
       },
     },
   },

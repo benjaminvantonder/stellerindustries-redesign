@@ -1,147 +1,182 @@
 import type { Variants, Transition } from 'framer-motion'
 
-// ─── SPRING PHYSICS ───
+// ─── ORGANIC SPRING PHYSICS ───
 export const spring: Transition = {
   type: 'spring',
-  stiffness: 100,
+  stiffness: 60,
   damping: 20,
-  mass: 1,
+  mass: 1.2,
 }
 
 export const springGentle: Transition = {
   type: 'spring',
-  stiffness: 60,
+  stiffness: 40,
   damping: 25,
-  mass: 1.2,
+  mass: 1.5,
 }
 
-export const springSnappy: Transition = {
+export const springFluid: Transition = {
   type: 'spring',
-  stiffness: 200,
-  damping: 25,
-  mass: 0.8,
+  stiffness: 80,
+  damping: 18,
+  mass: 1,
 }
 
-// ─── SCROLL REVEAL VARIANTS ───
-export const fadeIn: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+// ─── PAGE TRANSITION ───
+export const pageTransition: Variants = {
+  initial: {
+    opacity: 0,
+    filter: 'blur(8px)',
+    scale: 0.98,
   },
-}
-
-export const slideUp: Variants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
+  animate: {
     opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-  },
-}
-
-export const slideLeft: Variants = {
-  hidden: { opacity: 0, x: 60 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-  },
-}
-
-export const slideRight: Variants = {
-  hidden: { opacity: 0, x: -60 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-  },
-}
-
-export const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: {
-    opacity: 1,
+    filter: 'blur(0px)',
     scale: 1,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-  },
-}
-
-// ─── STAGGER CONTAINER ───
-export const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
+      type: 'spring',
+      stiffness: 50,
+      damping: 20,
+      mass: 1.2,
+      staggerChildren: 0.08,
     },
   },
+  exit: {
+    opacity: 0,
+    filter: 'blur(6px)',
+    scale: 1.01,
+    transition: { duration: 0.3, ease: 'easeIn' as const },
+  },
 }
 
-export const staggerItem: Variants = {
-  hidden: { opacity: 0, y: 20 },
+export const pageChild: Variants = {
+  initial: { opacity: 0, y: 30, filter: 'blur(4px)' },
+  animate: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { type: 'spring', stiffness: 60, damping: 20 },
+  },
+  exit: {
+    opacity: 0,
+    y: -20,
+    filter: 'blur(4px)',
+    transition: { duration: 0.2 },
+  },
+}
+
+// ─── ORGANIC REVEAL ───
+export const organicFade: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { type: 'spring', stiffness: 60, damping: 20, mass: 1.2 },
+  },
+}
+
+export const organicRise: Variants = {
+  hidden: { opacity: 0, y: 60, filter: 'blur(12px)' },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    filter: 'blur(0px)',
+    transition: { type: 'spring', stiffness: 60, damping: 20, mass: 1.2 },
   },
 }
 
-// ─── LIGHT SOURCE HOVER ───
-export const lightSourceHover: Variants = {
-  rest: {
-    boxShadow: 'var(--shadow-ambient)',
-    transition: { duration: 0.4, ease: 'easeOut' as const },
-  },
-  hover: {
-    boxShadow: 'var(--shadow-elevated)',
-    transition: { duration: 0.4, ease: 'easeOut' as const },
+export const organicDriftLeft: Variants = {
+  hidden: { opacity: 0, x: 80, filter: 'blur(8px)' },
+  visible: {
+    opacity: 1,
+    x: 0,
+    filter: 'blur(0px)',
+    transition: { type: 'spring', stiffness: 60, damping: 20, mass: 1.2 },
   },
 }
 
-// ─── GLOW EFFECT ───
-export const glowEffect: Variants = {
-  rest: {
-    opacity: 0.4,
-    scale: 0.95,
-    transition: { duration: 0.4, ease: 'easeOut' as const },
-  },
-  hover: {
-    opacity: 0.8,
-    scale: 1,
-    transition: { duration: 0.4, ease: 'easeOut' as const },
+export const organicDriftRight: Variants = {
+  hidden: { opacity: 0, x: -80, filter: 'blur(8px)' },
+  visible: {
+    opacity: 1,
+    x: 0,
+    filter: 'blur(0px)',
+    transition: { type: 'spring', stiffness: 60, damping: 20, mass: 1.2 },
   },
 }
 
-// ─── PARALLAX ───
-export const parallaxSlow = {
-  rest: { y: 0 },
-  hover: { y: -8 },
-}
-
-export const parallaxFast = {
-  rest: { y: 0 },
-  hover: { y: -16 },
-}
-
-// ─── IMAGE REVEAL ───
-export const imageReveal: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 1.1,
-    filter: 'blur(8px)',
-  },
+export const organicEmerge: Variants = {
+  hidden: { opacity: 0, scale: 0.9, filter: 'blur(16px)' },
   visible: {
     opacity: 1,
     scale: 1,
     filter: 'blur(0px)',
-    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] },
+    transition: { type: 'spring', stiffness: 50, damping: 20, mass: 1.4 },
+  },
+}
+
+// ─── BOKEH SHIFT ───
+export const bokehShift: Variants = {
+  hidden: { opacity: 0, scale: 0.6, filter: 'blur(40px)' },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    filter: 'blur(0px)',
+    transition: { type: 'spring', stiffness: 30, damping: 25, mass: 2 },
+  },
+}
+
+// ─── STAGGER ORGANIC ───
+export const staggerOrganic: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.15,
+    },
+  },
+}
+
+export const staggerChild: Variants = {
+  hidden: { opacity: 0, y: 40, filter: 'blur(8px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { type: 'spring', stiffness: 60, damping: 20, mass: 1.2 },
+  },
+}
+
+// ─── GLOW PULSE ───
+export const glowPulse: Variants = {
+  rest: {
+    opacity: 0.4,
+    scale: 1,
+    transition: { type: 'spring', stiffness: 60, damping: 20 },
+  },
+  hover: {
+    opacity: 1,
+    scale: 1.05,
+    transition: { type: 'spring', stiffness: 100, damping: 15 },
+  },
+}
+
+// ─── MAGNETIC HOVER ───
+export const magneticHover: Variants = {
+  rest: {
+    scale: 1,
+    transition: { type: 'spring', stiffness: 200, damping: 20 },
+  },
+  hover: {
+    scale: 1.03,
+    transition: { type: 'spring', stiffness: 200, damping: 20 },
   },
 }
 
 // ─── THEME TRANSITION ───
 export const themeTransition: Transition = {
-  duration: 0.5,
-  ease: [0.16, 1, 0.3, 1],
+  type: 'spring',
+  stiffness: 60,
+  damping: 20,
+  mass: 1,
 }
