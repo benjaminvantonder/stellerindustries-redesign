@@ -1,88 +1,106 @@
-import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
-import Reveal from '@/components/Reveal'
+import { motion } from 'framer-motion'
+import { Hero } from '@/components/Hero'
+import { ScrollReveal } from '@/components/ScrollReveal'
 import { services } from '@/data/services'
+import { lightSourceHover, imageReveal } from '@/lib/motion'
 
-const serviceImages = [
-  'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80',
-  'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80',
-  'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80',
-  'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80',
-  'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80',
-]
-
-export default function Services() {
+export function Services() {
   return (
     <>
-      <Helmet>
-        <title>Services — Steller Industries</title>
-        <meta
-          name="description"
-          content="Sound, lighting, photography, and videography services for events of every scale."
-        />
-      </Helmet>
+      <Hero
+        eyebrow="Services"
+        title="Five Disciplines"
+        titleAccent="One Standard"
+        description="Every service we offer is backed by the same commitment: technical precision, creative excellence, and zero tolerance for mediocrity."
+      />
 
-      <div className="pt-32">
-        <section className="py-16 md:py-24">
-          <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
-            <Reveal direction="left">
-              <h1 className="font-display text-5xl md:text-7xl font-bold text-ink leading-[0.95] max-w-3xl">
-                What we do.
-              </h1>
-            </Reveal>
-
-            <Reveal direction="left" delay={0.1}>
-              <p className="mt-8 text-muted text-lg md:text-xl leading-relaxed max-w-2xl">
-                Five disciplines, one standard. Every service we offer is built on the same
-                principle: clean signal, intentional execution, zero compromise.
-              </p>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* Services list with images */}
-        <section className="pb-16 md:pb-24">
-          <div className="max-w-content mx-auto px-8 space-y-16 md:space-y-24">
+      {/* ─── SERVICE LIST ─── */}
+      <section className="py-section-lg">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <div className="space-y-0">
             {services.map((service, i) => (
-              <Reveal key={service.title} delay={i * 0.06} direction={i % 2 === 0 ? 'left' : 'right'}>
-                <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center ${i % 2 === 1 ? 'md:[direction:rtl]' : ''}`}>
-                  <div className="aspect-[4/3] bg-ink/5 overflow-hidden rounded-2xl md:[direction:ltr]">
-                    <img
-                      src={serviceImages[i]}
-                      alt={service.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="md:[direction:ltr]">
-                    <h2 className="font-display text-2xl md:text-4xl font-bold text-ink">
+              <ScrollReveal key={service.id} delay={i * 0.05}>
+                <div className="grid gap-8 border-b border-[var(--color-border)] py-12 md:grid-cols-12 md:items-center md:gap-12">
+                  {/* Image */}
+                  <motion.div
+                    className={`md:col-span-5 ${i % 2 === 1 ? 'md:col-start-8 md:order-last' : ''}`}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={imageReveal}
+                  >
+                    <div className="glow-container aspect-[4/3] overflow-hidden rounded-sm border border-[var(--color-border)]">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="h-full w-full object-cover transition-transform duration-600 hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Text */}
+                  <div className={`flex flex-col justify-center md:col-span-6 ${i % 2 === 1 ? 'md:col-start-1 md:order-first' : 'md:col-start-7'}`}>
+                    <span className="font-mono text-display-sm text-[var(--color-gold)]/20">
+                      0{i + 1}
+                    </span>
+                    <h2 className="mt-4 font-display text-display-md font-extralight tracking-tight text-[var(--color-text)]">
                       {service.title}
                     </h2>
-                    <p className="mt-4 text-muted text-lg leading-relaxed max-w-xl">
+                    <p className="mt-6 text-body-lg font-light leading-relaxed text-[var(--color-muted)]">
                       {service.description}
                     </p>
+                    <motion.div
+                      className="mt-8 h-px w-16 bg-[var(--color-gold)]"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: 64 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    />
                   </div>
                 </div>
-              </Reveal>
+              </ScrollReveal>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* CTA */}
-        <section className="pb-24 md:pb-32">
-          <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
-            <Reveal>
-              <p className="text-muted mb-6">Ready to discuss your production?</p>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 bg-ink text-surface text-sm font-semibold px-7 py-3.5 hover:bg-ink/80 transition-all duration-300 rounded-full"
-              >
-                Get in Touch
-              </Link>
-            </Reveal>
+      {/* ─── CAPABILITY GRID ─── */}
+      <section className="py-section bg-[var(--color-surface)] transition-colors duration-500">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <ScrollReveal>
+            <p className="text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+              Capabilities
+            </p>
+            <h2 className="mt-4 font-display text-display-lg font-extralight tracking-tight text-[var(--color-text)]">
+              What we bring to every project
+            </h2>
+          </ScrollReveal>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              'Digital Mixing Consoles',
+              'Line Array Systems',
+              'LED Video Walls',
+              'Intelligent Fixtures',
+              'Projection Mapping',
+              'Wireless Communication',
+              'Signal Distribution',
+              'Stage Design',
+            ].map((item, i) => (
+              <ScrollReveal key={item} delay={i * 0.05}>
+                <motion.div
+                  className="rounded-sm border border-[var(--color-border)] p-6 text-center transition-colors hover:border-[var(--color-gold)]"
+                  whileHover="hover"
+                  variants={lightSourceHover}
+                >
+                  <p className="text-sm font-light text-[var(--color-text)]">{item}</p>
+                </motion.div>
+              </ScrollReveal>
+            ))}
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </>
   )
 }

@@ -1,72 +1,79 @@
 import { Link } from 'react-router-dom'
+import { NAV_LINKS } from '@/data/constants'
 
-const footerLinks = [
-  { to: '/about', label: 'About' },
-  { to: '/services', label: 'Services' },
-  { to: '/work', label: 'Work' },
-  { to: '/testimonials', label: 'Testimonials' },
-  { to: '/contact', label: 'Contact' },
-]
+export function Footer() {
+  const year = new Date().getFullYear()
 
-export default function Footer() {
   return (
-    <footer className="border-t-2 border-ink/10">
-      <div className="max-w-content mx-auto px-8 py-16">
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12">
-          <div>
-            <Link to="/" className="font-display text-xl font-bold text-ink tracking-tight">
-              Steller
+    <footer className="border-t border-[var(--color-border)] bg-[var(--color-bg)] transition-colors duration-500">
+      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
+        <div className="grid gap-12 md:grid-cols-12">
+          {/* Brand */}
+          <div className="md:col-span-5">
+            <Link to="/" className="group inline-block">
+              <h3 className="font-display text-xl font-extralight tracking-[0.08em] text-[var(--color-text)] transition-colors group-hover:text-[var(--color-gold)]">
+                Steller Industries
+              </h3>
             </Link>
-            <p className="mt-4 text-sm text-muted leading-relaxed max-w-xs">
-              Sound. Light. Vision. Excellence in event production across South Africa.
+            <p className="mt-4 max-w-xs text-sm font-light leading-relaxed text-[var(--color-muted)]">
+              South Africa's event technology partner. Precision sound, lighting, and visual production.
             </p>
+            <div className="mt-6 flex gap-1">
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="h-px w-8 bg-[var(--color-gold)]" style={{ opacity: 1 - i * 0.25 }} />
+              ))}
+            </div>
           </div>
 
-          <div className="flex gap-16">
-            <div>
-              <ul className="space-y-2.5">
-                {footerLinks.map(({ to, label }) => (
-                  <li key={to}>
-                    <Link
-                      to={to}
-                      className="text-sm text-muted hover:text-ink transition-colors duration-200"
-                    >
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Navigation */}
+          <div className="md:col-span-3">
+            <h4 className="mb-4 text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-muted)]">
+              Navigation
+            </h4>
+            <ul className="space-y-2">
+              {NAV_LINKS.map(link => (
+                <li key={link.path}>
+                  <Link
+                    to={link.path}
+                    className="text-sm font-light text-[var(--color-muted)] transition-colors hover:text-[var(--color-gold)]"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <div>
-              <ul className="space-y-2.5">
-                <li>
-                  <a
-                    href="mailto:info@stellerindustries.co.za"
-                    className="text-sm text-muted hover:text-ink transition-colors duration-200"
-                  >
-                    info@stellerindustries.co.za
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://wa.me/27000000000"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-muted hover:text-ink transition-colors duration-200"
-                  >
-                    WhatsApp
-                  </a>
-                </li>
-                <li className="text-sm text-muted/50">South Africa</li>
-              </ul>
-            </div>
+          {/* Contact */}
+          <div className="md:col-span-4">
+            <h4 className="mb-4 text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-muted)]">
+              Contact
+            </h4>
+            <ul className="space-y-2 text-sm font-light text-[var(--color-muted)]">
+              <li>
+                <a href="mailto:info@stellerindustries.co.za" className="transition-colors hover:text-[var(--color-gold)]">
+                  info@stellerindustries.co.za
+                </a>
+              </li>
+              <li>
+                <a href="tel:+27111234567" className="transition-colors hover:text-[var(--color-gold)]">
+                  +27 11 123 4567
+                </a>
+              </li>
+              <li className="pt-2 text-xs text-[var(--color-muted)]/60">
+                Johannesburg, South Africa
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="mt-16">
-          <p className="text-xs text-muted/40">
-            &copy; {new Date().getFullYear()} Steller Industries
+        {/* Bottom bar */}
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-[var(--color-border)] pt-8 sm:flex-row">
+          <p className="text-xs font-light text-[var(--color-muted)]">
+            &copy; {year} Steller Industries. All rights reserved.
+          </p>
+          <p className="text-xs font-light text-[var(--color-muted)]/60">
+            Precision in every detail.
           </p>
         </div>
       </div>

@@ -1,78 +1,108 @@
-import { useState, useEffect, useCallback } from 'react'
-import { Helmet } from 'react-helmet-async'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
+import { Hero } from '@/components/Hero'
+import { ScrollReveal } from '@/components/ScrollReveal'
 import { testimonials } from '@/data/testimonials'
+import { lightSourceHover, staggerContainer, staggerItem } from '@/lib/motion'
 
-export default function Testimonials() {
-  const [current, setCurrent] = useState(0)
-
-  const next = useCallback(() => {
-    setCurrent((prev) => (prev + 1) % testimonials.length)
-  }, [])
-
-  useEffect(() => {
-    const timer = setInterval(next, 8000)
-    return () => clearInterval(timer)
-  }, [next])
-
-  const t = testimonials[current]
+export function Testimonials() {
+  const featured = testimonials[0]
+  const rest = testimonials.slice(1)
 
   return (
     <>
-      <Helmet>
-        <title>Testimonials — Steller Industries</title>
-        <meta
-          name="description"
-          content="What our clients say about Steller Industries — sound, lighting, and visual experiences."
-        />
-      </Helmet>
+      <Hero
+        eyebrow="Testimonials"
+        title="Words That"
+        titleAccent="Speak Volumes"
+        description="Our reputation is built on the trust of the people we work with. Here's what they have to say."
+      />
 
-      <div className="pt-32">
-        <section className="min-h-[80vh] flex items-center">
-          <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
-            <div className="min-h-[320px] flex items-center">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={t.id}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -16 }}
-                  transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-                >
-                  <blockquote className="font-display text-3xl md:text-5xl lg:text-6xl text-ink leading-snug max-w-4xl">
-                    &ldquo;{t.quote}&rdquo;
-                  </blockquote>
+      {/* ─── FEATURED TESTIMONIAL ─── */}
+      <section className="py-section-lg">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <ScrollReveal variant="scale">
+            <motion.blockquote
+              className="relative rounded-sm border border-[var(--color-border)] p-12 transition-colors hover:border-[var(--color-gold)] md:p-16"
+              whileHover="hover"
+              variants={lightSourceHover}
+            >
+              {/* Decorative quote mark */}
+              <span className="absolute left-8 top-8 font-display text-[8rem] leading-none text-[var(--color-gold)]/10 select-none">
+                &ldquo;
+              </span>
 
-                  <div className="mt-10 flex items-baseline gap-4">
-                    <div className="w-8 h-px bg-ink/20" />
-                    <div>
-                      <p className="text-ink text-sm font-medium">{t.name}</p>
-                      <p className="text-muted/50 text-sm mt-0.5">
-                        {t.role}
-                        {t.event && <span className="text-accent/30"> &middot; {t.event}</span>}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+              <div className="relative z-10">
+                <div className="mb-8 flex gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <div key={i} className="h-px w-6 bg-[var(--color-gold)]" />
+                  ))}
+                </div>
 
-            {/* Dot navigation */}
-            <div className="mt-16 flex items-center gap-3">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    i === current ? 'bg-ink scale-125' : 'bg-ink/15 hover:bg-ink/30'
-                  }`}
-                  aria-label={`Go to testimonial ${i + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-      </div>
+                <p className="max-w-3xl font-display text-display-md font-extralight italic leading-relaxed text-[var(--color-text)]">
+                  {featured.quote}
+                </p>
+
+                <footer className="mt-10 border-t border-[var(--color-border)] pt-6">
+                  <p className="text-body font-light text-[var(--color-text)]">
+                    {featured.name}
+                  </p>
+                  <p className="text-sm font-light text-[var(--color-muted)]">
+                    {featured.role}
+                    {featured.event && <span className="text-[var(--color-gold)]"> — {featured.event}</span>}
+                  </p>
+                </footer>
+              </div>
+            </motion.blockquote>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ─── ALL TESTIMONIALS ─── */}
+      <section className="py-section bg-[var(--color-surface)] transition-colors duration-500">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <ScrollReveal>
+            <p className="text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+              More Testimonials
+            </p>
+            <h2 className="mt-4 font-display text-display-lg font-extralight tracking-tight text-[var(--color-text)]">
+              From our clients
+            </h2>
+          </ScrollReveal>
+
+          <motion.div
+            className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {rest.map(t => (
+              <motion.blockquote
+                key={t.id}
+                variants={staggerItem}
+                className="flex h-full flex-col rounded-sm border border-[var(--color-border)] p-8 transition-colors hover:border-[var(--color-gold)]"
+                whileHover="hover"
+              >
+                <div className="mb-6 flex gap-1">
+                  {[...Array(5)].map((_, j) => (
+                    <div key={j} className="h-px w-3 bg-[var(--color-gold)]" />
+                  ))}
+                </div>
+                <p className="flex-1 text-body font-light italic leading-relaxed text-[var(--color-text)]">
+                  "{t.quote}"
+                </p>
+                <footer className="mt-8 border-t border-[var(--color-border)] pt-4">
+                  <p className="text-sm font-light text-[var(--color-text)]">{t.name}</p>
+                  <p className="text-xs font-light text-[var(--color-muted)]">
+                    {t.role}
+                    {t.event && <span className="text-[var(--color-gold)]"> — {t.event}</span>}
+                  </p>
+                </footer>
+              </motion.blockquote>
+            ))}
+          </motion.div>
+        </div>
+      </section>
     </>
   )
 }

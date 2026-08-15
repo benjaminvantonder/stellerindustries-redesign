@@ -1,79 +1,124 @@
-import { Helmet } from 'react-helmet-async'
-import Reveal from '@/components/Reveal'
+import { motion } from 'framer-motion'
+import { Hero } from '@/components/Hero'
+import { ScrollReveal } from '@/components/ScrollReveal'
 import { portfolio } from '@/data/portfolio'
+import { lightSourceHover, staggerContainer, staggerItem } from '@/lib/motion'
 
-const images = [
-  'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1280&q=80',
-  'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1280&q=80',
-  'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1280&q=80',
-  'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1280&q=80',
-  'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1280&q=80',
-  'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1280&q=80',
-]
+export function Work() {
+  const featured = portfolio.filter(p => p.featured)
+  const rest = portfolio.filter(p => !p.featured)
 
-export default function Work() {
   return (
     <>
-      <Helmet>
-        <title>Work — Steller Industries</title>
-        <meta
-          name="description"
-          content="See our portfolio of events — sound, lighting, and visual experiences delivered across South Africa."
-        />
-      </Helmet>
+      <Hero
+        eyebrow="Work"
+        title="Projects That"
+        titleAccent="Define Standards"
+        description="Every event is a technical puzzle. We solve it with precision engineering, creative problem-solving, and relentless attention to detail."
+      />
 
-      <div className="pt-32">
-        <section className="py-16 md:py-24">
-          <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
-            <Reveal direction="left">
-              <h1 className="font-display text-5xl md:text-7xl font-bold text-ink leading-[0.95]">
-                Portfolio
-              </h1>
-            </Reveal>
+      {/* ─── FEATURED ─── */}
+      <section className="py-section-lg">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <ScrollReveal>
+            <p className="text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+              Featured
+            </p>
+            <h2 className="mt-4 font-display text-display-lg font-extralight tracking-tight text-[var(--color-text)]">
+              Selected projects
+            </h2>
+          </ScrollReveal>
 
-            <Reveal direction="left" delay={0.1}>
-              <p className="mt-8 text-muted text-lg md:text-xl leading-relaxed max-w-2xl">
-                A selection of productions we&apos;ve delivered — from intimate corporate events
-                to large-scale festival stages.
-              </p>
-            </Reveal>
-          </div>
-        </section>
-
-        <section className="pb-32">
-          <div className="max-w-content mx-auto px-8">
-            <div className="space-y-20">
-              {portfolio.map((item, i) => (
-                <Reveal key={item.id} delay={i * 0.05} direction={i % 2 === 0 ? 'left' : 'right'}>
-                  <article className="overflow-hidden rounded-2xl border border-ink/10">
-                    <div className="aspect-[16/9] bg-ink/5 overflow-hidden">
-                      <img
-                        src={images[i]}
-                        alt={item.title}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                        loading="lazy"
-                      />
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
+            {featured.map((item, i) => (
+              <ScrollReveal key={item.id} delay={i * 0.1}>
+                <motion.article
+                  className="group relative overflow-hidden rounded-sm border border-[var(--color-border)] transition-colors hover:border-[var(--color-gold)]"
+                  whileHover="hover"
+                  variants={lightSourceHover}
+                >
+                  <div className="glow-container aspect-[4/3] bg-[var(--color-surface-raised)]">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="h-full w-full object-cover opacity-80 transition-all duration-600 group-hover:scale-105 group-hover:opacity-100"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-8">
+                    <div className="flex items-center justify-between">
+                      <p className="text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+                        {item.category}
+                      </p>
+                      <span className="font-mono text-xs text-[var(--color-muted)]">{item.year}</span>
                     </div>
-                    <div className="p-6">
-                      <div className="flex items-baseline justify-between">
-                        <div>
-                          <h2 className="font-display text-xl md:text-2xl font-semibold text-ink">
-                            {item.title}
-                          </h2>
-                          <p className="mt-2 text-muted leading-relaxed max-w-xl">
-                            {item.description}
-                          </p>
-                        </div>
-                        <span className="text-xs text-muted/40 shrink-0 ml-8">{item.year}</span>
-                      </div>
-                    </div>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
+                    <h3 className="mt-3 font-display text-display-sm font-extralight text-[var(--color-text)]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-body font-light text-[var(--color-muted)]">
+                      {item.description}
+                    </p>
+                  </div>
+                </motion.article>
+              </ScrollReveal>
+            ))}
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      {/* ─── ALL PROJECTS GRID ─── */}
+      <section className="py-section bg-[var(--color-surface)] transition-colors duration-500">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <ScrollReveal>
+            <p className="text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+              Archive
+            </p>
+            <h2 className="mt-4 font-display text-display-lg font-extralight tracking-tight text-[var(--color-text)]">
+              All projects
+            </h2>
+          </ScrollReveal>
+
+          <motion.div
+            className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {rest.map(item => (
+              <motion.article
+                key={item.id}
+                variants={staggerItem}
+                className="group overflow-hidden rounded-sm border border-[var(--color-border)] transition-colors hover:border-[var(--color-gold)]"
+                whileHover="hover"
+              >
+                <div className="glow-container aspect-[3/2] bg-[var(--color-surface-raised)]">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-full w-full object-cover opacity-80 transition-all duration-600 group-hover:scale-105 group-hover:opacity-100"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center justify-between">
+                    <p className="text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+                      {item.category}
+                    </p>
+                    <span className="font-mono text-xs text-[var(--color-muted)]">{item.year}</span>
+                  </div>
+                  <h3 className="mt-2 font-display text-lg font-extralight text-[var(--color-text)]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm font-light text-[var(--color-muted)]">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.article>
+            ))}
+          </motion.div>
+        </div>
+      </section>
     </>
   )
 }

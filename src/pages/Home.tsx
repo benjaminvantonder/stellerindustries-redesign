@@ -1,161 +1,295 @@
-import { Helmet } from 'react-helmet-async'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import Reveal from '@/components/Reveal'
+import { ArrowUpRight } from 'lucide-react'
+import { Hero } from '@/components/Hero'
+import { ScrollReveal } from '@/components/ScrollReveal'
 import { services } from '@/data/services'
+import { portfolio } from '@/data/portfolio'
+import { testimonials } from '@/data/testimonials'
+import { STATS, PROCESS_STEPS } from '@/data/constants'
+import { staggerContainer, staggerItem, lightSourceHover } from '@/lib/motion'
 
-export default function Home() {
+export function Home() {
   return (
     <>
-      <Helmet>
-        <title>Steller Industries — Excellence in Sound, Light, and Vision</title>
-        <meta
-          name="description"
-          content="South Africa's premier sound, lighting, and visual experiences for events of every scale."
-        />
-      </Helmet>
-
-      {/* Cream strip for notch blending */}
-      <div className="h-10 bg-cream" />
-
-      {/* Hero */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1920&q=80"
-            alt=""
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+      {/* ─── HERO ─── */}
+      <Hero
+        eyebrow="South Africa's Event Technology Partner"
+        title="Precision Sound,"
+        titleAccent="Lighting & Visual Production"
+        description="We engineer the technical backbone of South Africa's most demanding events. Sound, lighting, photography, videography — executed with precision, zero compromise."
+      >
+        <div className="mt-10 flex flex-wrap gap-4">
+          <Link
+            to="/contact"
+            className="group inline-flex items-center gap-2 rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-8 py-3 text-xs font-normal uppercase tracking-[0.14em] text-black transition-all hover:bg-transparent hover:text-[var(--color-gold)]"
+          >
+            Start a Project
+            <ArrowUpRight size={14} strokeWidth={1.5} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+          <Link
+            to="/work"
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] px-8 py-3 text-xs font-normal uppercase tracking-[0.14em] text-[var(--color-muted)] transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+          >
+            View Our Work
+          </Link>
         </div>
+      </Hero>
 
-        <div className="relative z-10 pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full pt-24">
-          <Reveal direction="left">
-            <h1 className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] font-bold text-white leading-[0.9] tracking-tight" style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}>
-              Sound.
-              <br />
-              Light.
-              <br />
-              Vision.
-            </h1>
-          </Reveal>
-
-          <Reveal direction="left" delay={0.1}>
-            <p className="mt-8 text-white/80 text-lg md:text-xl max-w-lg leading-relaxed">
-              Excellence in sound, lighting, and visual experiences for events across South Africa.
-            </p>
-          </Reveal>
-
-          <Reveal direction="left" delay={0.2}>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 bg-white text-ink text-sm font-semibold px-7 py-3.5 hover:bg-white/90 transition-all duration-300 rounded-full"
-              >
-                Start a Project
-              </Link>
-              <Link
-                to="/work"
-                className="inline-flex items-center gap-2 border-2 border-white/40 text-white text-sm px-7 py-3.5 hover:border-white hover:bg-white/10 transition-all duration-300 rounded-full"
-              >
-                View Our Work
-              </Link>
-            </div>
-          </Reveal>
+      {/* ─── PROBLEM → OUTCOME ─── */}
+      <section className="py-section">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <div className="grid gap-16 lg:grid-cols-12 lg:gap-8">
+            <ScrollReveal variant="left" className="lg:col-span-5">
+              <p className="text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+                The Challenge
+              </p>
+              <h2 className="mt-4 font-display text-display-md font-extralight tracking-tight text-[var(--color-text)]">
+                Most events fail on technical execution.
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal variant="right" className="lg:col-span-5 lg:col-start-8">
+              <p className="text-body-xl font-light leading-relaxed text-[var(--color-muted)]">
+                Poor sound kills atmosphere. Bad lighting kills mood. Technical failures kill momentum.
+                Your audience deserves seamless. Your brand demands precision.
+              </p>
+              <p className="mt-6 text-body-xl font-light leading-relaxed text-[var(--color-muted)]">
+                We don't just set up equipment. We engineer experiences where every cue, every light change, every mix is intentional.
+              </p>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
-      {/* Statement */}
-      <section className="py-32 md:py-44">
-        <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto">
-          <Reveal>
-            <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-ink leading-[1.1] max-w-3xl text-balance">
-              We make light happen in darkness. Sound that moves people. Visuals that stop them in their tracks.
-            </h2>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <p className="mt-10 text-muted text-lg leading-relaxed max-w-2xl">
-              From intimate corporate gatherings to large-scale festival productions, we handle
-              every element of your event's technical production — sound engineering, lighting
-              design, visual experiences, photography, and videography. One team, one standard,
-              zero compromise.
-            </p>
-          </Reveal>
+      {/* ─── STATS ─── */}
+      <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] py-16 transition-colors duration-500">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <motion.div
+            className="grid grid-cols-2 gap-8 md:grid-cols-4"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {STATS.map(stat => (
+              <motion.div
+                key={stat.label}
+                variants={staggerItem}
+                className="text-center"
+              >
+                <p className="font-display text-display-md font-extralight text-[var(--color-gold)]">
+                  {stat.value}
+                </p>
+                <p className="mt-2 text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-muted)]">
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
-      {/* Services */}
-      <section className="py-32 md:py-44 bg-white">
-        <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto">
-          <Reveal>
-            <h2 className="font-display text-sm text-accent tracking-widest uppercase mb-16 font-semibold">
-              Services
+      {/* ─── SERVICES ─── */}
+      <section className="py-section-lg">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <ScrollReveal>
+            <p className="text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+              Disciplines
+            </p>
+            <h2 className="mt-4 font-display text-display-lg font-extralight tracking-tight text-[var(--color-text)]">
+              Five disciplines.<br />One standard.
             </h2>
-          </Reveal>
+          </ScrollReveal>
 
-          <div className="space-y-10 md:space-y-14">
+          <div className="mt-16 space-y-2">
             {services.map((service, i) => (
-              <Reveal key={service.title} delay={i * 0.05} direction={i % 2 === 0 ? 'left' : 'right'}>
-                <div className="border-l-2 border-ink/10 pl-6">
-                  <h3 className="font-display text-xl md:text-2xl font-semibold text-ink">
+              <ScrollReveal key={service.id} delay={i * 0.05}>
+                <motion.div
+                  className="group grid gap-6 border-b border-[var(--color-border)] py-8 transition-colors hover:border-[var(--color-gold)] md:grid-cols-12 md:items-center"
+                  whileHover="hover"
+                  variants={lightSourceHover}
+                >
+                  <div className="md:col-span-1">
+                    <span className="text-caption font-mono text-[var(--color-muted)]">
+                      0{i + 1}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-display-sm font-extralight text-[var(--color-text)] transition-colors group-hover:text-[var(--color-gold)] md:col-span-5">
                     {service.title}
                   </h3>
-                  <p className="mt-3 text-muted text-base md:text-lg leading-relaxed max-w-xl">
+                  <p className="text-body font-light text-[var(--color-muted)] md:col-span-5">
                     {service.description}
                   </p>
-                </div>
-              </Reveal>
+                  <div className="hidden md:col-span-1 md:flex md:justify-end">
+                    <ArrowUpRight
+                      size={16}
+                      strokeWidth={1}
+                      className="text-[var(--color-muted)] transition-all group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-[var(--color-gold)]"
+                    />
+                  </div>
+                </motion.div>
+              </ScrollReveal>
             ))}
           </div>
-
-          <Reveal delay={0.3}>
-            <div className="mt-16">
-              <Link
-                to="/services"
-                className="text-accent text-sm font-semibold hover:text-accent-hover transition-colors"
-              >
-                All services &rarr;
-              </Link>
-            </div>
-          </Reveal>
         </div>
       </section>
 
-      {/* Testimonial */}
-      <section className="py-32 md:py-44">
-        <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto">
-          <Reveal>
-            <blockquote className="font-display text-2xl md:text-4xl lg:text-5xl text-ink leading-snug max-w-4xl">
-              &ldquo;The attention to detail was remarkable. Every cue, every light change, every
-              sound transition was perfectly timed.&rdquo;
-            </blockquote>
-            <div className="mt-8 flex items-baseline gap-4">
-              <div className="w-8 h-px bg-ink/20" />
+      {/* ─── FEATURED WORK ─── */}
+      <section className="py-section-lg bg-[var(--color-surface)] transition-colors duration-500">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <ScrollReveal>
+            <div className="flex items-end justify-between">
               <div>
-                <p className="text-ink text-sm font-medium">Naledi Mokoena</p>
-                <p className="text-muted/50 text-sm mt-0.5">Production Manager &middot; Music Festival</p>
+                <p className="text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+                  Selected Work
+                </p>
+                <h2 className="mt-4 font-display text-display-lg font-extralight tracking-tight text-[var(--color-text)]">
+                  Recent projects
+                </h2>
               </div>
+              <Link
+                to="/work"
+                className="hidden items-center gap-2 text-xs font-light uppercase tracking-[0.14em] text-[var(--color-muted)] transition-colors hover:text-[var(--color-gold)] md:inline-flex"
+              >
+                View all
+                <ArrowUpRight size={14} strokeWidth={1} />
+              </Link>
             </div>
-          </Reveal>
+          </ScrollReveal>
+
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
+            {portfolio.filter(p => p.featured).map((item, i) => (
+              <ScrollReveal key={item.id} delay={i * 0.1}>
+                <motion.div
+                  className="group relative overflow-hidden rounded-sm border border-[var(--color-border)] transition-colors hover:border-[var(--color-gold)]"
+                  whileHover="hover"
+                  variants={lightSourceHover}
+                >
+                  {/* Glow container */}
+                  <div className="glow-container aspect-[4/3] bg-[var(--color-surface-raised)]">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="h-full w-full object-cover opacity-80 transition-all duration-600 group-hover:scale-105 group-hover:opacity-100"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <p className="text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+                      {item.category}
+                    </p>
+                    <h3 className="mt-2 font-display text-xl font-extralight text-[var(--color-text)]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm font-light text-[var(--color-muted)]">
+                      {item.description}
+                    </p>
+                  </div>
+                </motion.div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-32 md:py-44 bg-white">
-        <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto">
-          <Reveal>
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-ink leading-tight max-w-2xl">
-              Let's build something extraordinary.
+      {/* ─── TESTIMONIALS ─── */}
+      <section className="py-section-lg">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <ScrollReveal>
+            <p className="text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+              Testimonials
+            </p>
+            <h2 className="mt-4 font-display text-display-lg font-extralight tracking-tight text-[var(--color-text)]">
+              Trusted by the best
             </h2>
-            <div className="mt-10">
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 bg-ink text-surface text-sm font-semibold px-7 py-3.5 hover:bg-ink/80 transition-all duration-300 rounded-full"
-              >
-                Get in Touch
-              </Link>
-            </div>
-          </Reveal>
+          </ScrollReveal>
+
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {testimonials.slice(0, 3).map((t, i) => (
+              <ScrollReveal key={t.id} delay={i * 0.1}>
+                <motion.blockquote
+                  className="flex h-full flex-col rounded-sm border border-[var(--color-border)] p-8 transition-colors hover:border-[var(--color-gold)]"
+                  whileHover="hover"
+                  variants={lightSourceHover}
+                >
+                  <div className="mb-6 flex gap-1">
+                    {[...Array(5)].map((_, j) => (
+                      <div key={j} className="h-px w-4 bg-[var(--color-gold)]" />
+                    ))}
+                  </div>
+                  <p className="flex-1 text-body-lg font-light italic leading-relaxed text-[var(--color-text)]">
+                    "{t.quote}"
+                  </p>
+                  <footer className="mt-8 border-t border-[var(--color-border)] pt-4">
+                    <p className="text-sm font-light text-[var(--color-text)]">{t.name}</p>
+                    <p className="text-xs font-light text-[var(--color-muted)]">{t.role}</p>
+                  </footer>
+                </motion.blockquote>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── PROCESS ─── */}
+      <section className="py-section-lg bg-[var(--color-surface)] transition-colors duration-500">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <ScrollReveal>
+            <p className="text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+              Process
+            </p>
+            <h2 className="mt-4 font-display text-display-lg font-extralight tracking-tight text-[var(--color-text)]">
+              How we work
+            </h2>
+          </ScrollReveal>
+
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {PROCESS_STEPS.map((step, i) => (
+              <ScrollReveal key={step.step} delay={i * 0.1}>
+                <motion.div
+                  className="rounded-sm border border-[var(--color-border)] p-8 transition-colors hover:border-[var(--color-gold)]"
+                  whileHover="hover"
+                  variants={lightSourceHover}
+                >
+                  <span className="font-mono text-display-sm text-[var(--color-gold)]/30">
+                    {step.step}
+                  </span>
+                  <h3 className="mt-4 font-display text-xl font-extralight text-[var(--color-text)]">
+                    {step.title}
+                  </h3>
+                  <p className="mt-3 text-body font-light text-[var(--color-muted)]">
+                    {step.text}
+                  </p>
+                </motion.div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CTA ─── */}
+      <section className="relative overflow-hidden py-section-lg">
+        {/* Light glow */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,168,76,0.08)_0%,transparent_70%)]" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 text-center lg:px-12">
+          <ScrollReveal variant="scale">
+            <h2 className="font-display text-display-xl font-extralight tracking-tight text-[var(--color-text)]">
+              Ready to elevate<br />your next event?
+            </h2>
+            <p className="mx-auto mt-6 max-w-lg text-body-xl font-light text-[var(--color-muted)]">
+              Let's discuss your vision. We'll engineer the technical foundation to make it extraordinary.
+            </p>
+            <Link
+              to="/contact"
+              className="group mt-10 inline-flex items-center gap-2 rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-10 py-4 text-xs font-normal uppercase tracking-[0.14em] text-black transition-all hover:bg-transparent hover:text-[var(--color-gold)]"
+            >
+              Get in Touch
+              <ArrowUpRight size={14} strokeWidth={1.5} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
     </>

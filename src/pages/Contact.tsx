@@ -1,221 +1,211 @@
-import { useState, type FormEvent } from 'react'
-import { Helmet } from 'react-helmet-async'
-import Reveal from '@/components/Reveal'
+import { type FormEvent, type ChangeEvent, useState, useCallback } from 'react'
+import { motion } from 'framer-motion'
+import { Hero } from '@/components/Hero'
+import { ScrollReveal } from '@/components/ScrollReveal'
+import { lightSourceHover } from '@/lib/motion'
 
-type Status = 'idle' | 'sending' | 'success' | 'error'
+interface FormData {
+  name: string
+  email: string
+  company: string
+  eventType: string
+  message: string
+}
 
-export default function Contact() {
-  const endpoint = import.meta.env.VITE_FORM_ENDPOINT
-  const [status, setStatus] = useState<Status>('idle')
-  const [formData, setFormData] = useState({
+export function Contact() {
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
-    event: '',
+    company: '',
+    eventType: '',
     message: '',
   })
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }, [])
+
+  const handleSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
-    if (!endpoint) {
-      setStatus('error')
-      return
-    }
-
-    setStatus('sending')
-
-    try {
-      const res = await fetch(endpoint, {
+    const endpoint = import.meta.env.VITE_FORM_ENDPOINT
+    if (endpoint) {
+      fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       })
-
-      if (res.ok) {
-        setStatus('success')
-        setFormData({ name: '', email: '', event: '', message: '' })
-      } else {
-        setStatus('error')
-      }
-    } catch {
-      setStatus('error')
+        .then(() => alert('Message sent. We\'ll be in touch.'))
+        .catch(() => alert('Something went wrong. Please try again.'))
+    } else {
+      alert('Form endpoint not configured. Please email us directly.')
     }
-  }
-
-  const inputClass =
-    'w-full bg-white border-2 border-ink/10 px-5 py-3.5 text-ink text-sm placeholder:text-muted/40 focus:outline-none focus:border-accent transition-all duration-300 rounded-xl'
+  }, [formData])
 
   return (
     <>
-      <Helmet>
-        <title>Contact — Steller Industries</title>
-        <meta
-          name="description"
-          content="Get in touch with Steller Industries for sound, lighting, and visual experiences for your event."
-        />
-      </Helmet>
+      <Hero
+        eyebrow="Contact"
+        title="Let's Start"
+        titleAccent="A Conversation"
+        description="Ready to discuss your next event? We'd love to hear about your vision and how we can help bring it to life."
+      />
 
-      <div className="pt-32">
-        <section className="py-16 md:py-24">
-          <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
-            <Reveal direction="left">
-              <h1 className="font-display text-5xl md:text-7xl font-bold text-ink leading-[0.95]">
-                Get in touch.
-              </h1>
-            </Reveal>
-
-            <Reveal direction="left" delay={0.1}>
-              <p className="mt-8 text-muted text-lg md:text-xl leading-relaxed max-w-2xl">
-                Ready to start your production? We&apos;d love to hear about your event.
-              </p>
-            </Reveal>
-          </div>
-        </section>
-
-        <section className="pb-32">
-          <div className="pl-8 md:pl-24 lg:pl-32 pr-8 max-w-content mx-auto w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-20">
-              {/* Form */}
-              <div className="lg:col-span-3">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <Reveal>
-                    <div>
-                      <label htmlFor="name" className="block text-sm text-ink mb-2 font-medium">
-                        Name
-                      </label>
-                      <input
-                        id="name"
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className={inputClass}
-                        placeholder="Your name"
-                      />
-                    </div>
-                  </Reveal>
-
-                  <Reveal delay={0.05}>
-                    <div>
-                      <label htmlFor="email" className="block text-sm text-ink mb-2 font-medium">
-                        Email
-                      </label>
-                      <input
-                        id="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className={inputClass}
-                        placeholder="you@company.co.za"
-                      />
-                    </div>
-                  </Reveal>
-
-                  <Reveal delay={0.1}>
-                    <div>
-                      <label htmlFor="event" className="block text-sm text-ink mb-2 font-medium">
-                        Event Type
-                      </label>
-                      <input
-                        id="event"
-                        type="text"
-                        value={formData.event}
-                        onChange={(e) => setFormData({ ...formData, event: e.target.value })}
-                        className={inputClass}
-                        placeholder="e.g. Corporate gala, festival, product launch"
-                      />
-                    </div>
-                  </Reveal>
-
-                  <Reveal delay={0.15}>
-                    <div>
-                      <label htmlFor="message" className="block text-sm text-ink mb-2 font-medium">
-                        Message
-                      </label>
-                      <textarea
-                        id="message"
-                        required
-                        rows={5}
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className={`${inputClass} resize-none`}
-                        placeholder="Tell us about your event..."
-                      />
-                    </div>
-                  </Reveal>
-
-                  <Reveal delay={0.2}>
-                    <div className="flex items-center gap-4 pt-2">
-                      <button
-                        type="submit"
-                        disabled={status === 'sending'}
-                        className="bg-ink text-surface text-sm font-semibold px-7 py-3.5 hover:bg-ink/80 transition-all duration-300 disabled:opacity-50 rounded-full"
-                      >
-                        {status === 'sending' ? 'Sending...' : 'Send Message'}
-                      </button>
-
-                      {status === 'success' && (
-                        <span className="text-sm text-green-600">Sent successfully</span>
-                      )}
-                      {status === 'error' && (
-                        <span className="text-sm text-red-500">
-                          {!endpoint ? 'Form not configured' : 'Failed to send'}
-                        </span>
-                      )}
-                    </div>
-                  </Reveal>
-                </form>
-              </div>
-
-              {/* Contact info */}
-              <div className="lg:col-span-2">
-                <Reveal delay={0.2}>
-                  <div className="space-y-10">
-                    <div>
-                      <p className="text-sm text-ink font-medium mb-2">Email</p>
-                      <a
-                        href="mailto:info@stellerindustries.co.za"
-                        className="text-muted hover:text-accent transition-colors"
-                      >
-                        info@stellerindustries.co.za
-                      </a>
-                    </div>
-
-                    <div>
-                      <p className="text-sm text-ink font-medium mb-2">Phone</p>
-                      <p className="text-muted">+27 XX XXX XXXX</p>
-                    </div>
-
-                    <div>
-                      <p className="text-sm text-ink font-medium mb-2">WhatsApp</p>
-                      <a
-                        href="https://wa.me/27000000000"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block border-2 border-ink/15 text-ink text-sm px-5 py-2.5 hover:border-ink hover:bg-ink hover:text-surface transition-all duration-300 rounded-full"
-                      >
-                        Chat on WhatsApp
-                      </a>
-                    </div>
-
-                    <div>
-                      <p className="text-sm text-ink font-medium mb-2">Location</p>
-                      <p className="text-muted">South Africa</p>
-                    </div>
-
-                    <div className="pt-6">
-                      <p className="text-sm text-muted/50">
-                        We typically respond within 24 hours during business days.
-                      </p>
-                    </div>
+      <section className="py-section-lg">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <div className="grid gap-16 lg:grid-cols-12 lg:gap-8">
+            {/* Form */}
+            <ScrollReveal variant="left" className="lg:col-span-7">
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="grid gap-8 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="name" className="mb-2 block text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-muted)]">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full border-b border-[var(--color-border)] bg-transparent py-3 text-body font-light text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-gold)] placeholder:text-[var(--color-muted)]/40"
+                      placeholder="Your name"
+                    />
                   </div>
-                </Reveal>
+                  <div>
+                    <label htmlFor="email" className="mb-2 block text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-muted)]">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full border-b border-[var(--color-border)] bg-transparent py-3 text-body font-light text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-gold)] placeholder:text-[var(--color-muted)]/40"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid gap-8 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="company" className="mb-2 block text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-muted)]">
+                      Company
+                    </label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      className="w-full border-b border-[var(--color-border)] bg-transparent py-3 text-body font-light text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-gold)] placeholder:text-[var(--color-muted)]/40"
+                      placeholder="Company name (optional)"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="eventType" className="mb-2 block text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-muted)]">
+                      Event Type
+                    </label>
+                    <select
+                      id="eventType"
+                      name="eventType"
+                      value={formData.eventType}
+                      onChange={handleChange}
+                      className="w-full border-b border-[var(--color-border)] bg-transparent py-3 text-body font-light text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-gold)]"
+                    >
+                      <option value="">Select event type</option>
+                      <option value="conference">Conference</option>
+                      <option value="festival">Festival</option>
+                      <option value="corporate">Corporate Event</option>
+                      <option value="concert">Concert</option>
+                      <option value="product-launch">Product Launch</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="mb-2 block text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-muted)]">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={5}
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full resize-none border-b border-[var(--color-border)] bg-transparent py-3 text-body font-light text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-gold)] placeholder:text-[var(--color-muted)]/40"
+                    placeholder="Tell us about your event..."
+                  />
+                </div>
+
+                <motion.button
+                  type="submit"
+                  className="inline-flex items-center gap-2 rounded-full border border-[var(--color-gold)] bg-[var(--color-gold)] px-10 py-4 text-xs font-normal uppercase tracking-[0.14em] text-black transition-all hover:bg-transparent hover:text-[var(--color-gold)]"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Send Message
+                </motion.button>
+              </form>
+            </ScrollReveal>
+
+            {/* Info sidebar */}
+            <ScrollReveal variant="right" className="lg:col-span-4 lg:col-start-9">
+              <div className="space-y-10">
+                <div>
+                  <h3 className="mb-3 text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+                    Email
+                  </h3>
+                  <a href="mailto:info@stellerindustries.co.za" className="text-body-lg font-light text-[var(--color-text)] transition-colors hover:text-[var(--color-gold)]">
+                    info@stellerindustries.co.za
+                  </a>
+                </div>
+
+                <div>
+                  <h3 className="mb-3 text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+                    Phone
+                  </h3>
+                  <a href="tel:+27111234567" className="text-body-lg font-light text-[var(--color-text)] transition-colors hover:text-[var(--color-gold)]">
+                    +27 11 123 4567
+                  </a>
+                </div>
+
+                <div>
+                  <h3 className="mb-3 text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+                    Location
+                  </h3>
+                  <p className="text-body-lg font-light text-[var(--color-text)]">
+                    Johannesburg, South Africa
+                  </p>
+                  <p className="mt-2 text-sm font-light text-[var(--color-muted)]">
+                    Available nationwide and across Africa
+                  </p>
+                </div>
+
+                <motion.div
+                  className="rounded-sm border border-[var(--color-border)] p-6 transition-colors hover:border-[var(--color-gold)]"
+                  whileHover="hover"
+                  variants={lightSourceHover}
+                >
+                  <h3 className="mb-3 text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+                    Response Time
+                  </h3>
+                  <p className="text-body-lg font-light text-[var(--color-text)]">
+                    Within 24 hours
+                  </p>
+                  <p className="mt-2 text-sm font-light text-[var(--color-muted)]">
+                    We aim to respond to all enquiries within one business day.
+                  </p>
+                </motion.div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </>
   )
 }

@@ -1,129 +1,162 @@
-import { Helmet } from 'react-helmet-async'
-import Reveal from '@/components/Reveal'
+import { motion } from 'framer-motion'
+import { Hero } from '@/components/Hero'
+import { ScrollReveal } from '@/components/ScrollReveal'
+import { STATS } from '@/data/constants'
+import { staggerContainer, staggerItem, lightSourceHover } from '@/lib/motion'
 
-export default function About() {
+const philosophyItems = [
+  {
+    title: 'Precision Over Volume',
+    description: 'We believe in the power of restraint. Every element we deploy serves a purpose. No excess, no compromise.',
+  },
+  {
+    title: 'Light as Material',
+    description: 'Light is not decoration — it is architecture. We sculpt with photons the way others sculpt with steel.',
+  },
+  {
+    title: 'Technical Rigour',
+    description: 'Behind every seamless moment is hours of calibration. We obsess over the details so your audience experiences perfection.',
+  },
+]
+
+const team = [
+  { name: 'Marco Steller', role: 'Founder & Technical Director', bio: '15 years in event technology. Former head of audio for one of SA\'s largest production companies.' },
+  { name: 'Lerato Mokoena', role: 'Head of Lighting Design', bio: 'Award-winning lighting designer. Specialises in architectural and concert lighting.' },
+  { name: 'Pieter van der Westhuizen', role: 'Operations Director', bio: 'Ensures every project runs on time, on budget, and above expectations.' },
+]
+
+export function About() {
   return (
     <>
-      <Helmet>
-        <title>About — Steller Industries</title>
-        <meta
-          name="description"
-          content="The story behind Steller Industries — a name that embodies excellence in sound, lighting, and visual experiences."
-        />
-      </Helmet>
+      <Hero
+        eyebrow="About"
+        title="Engineering Experiences"
+        titleAccent="Since 2012"
+        description="Steller Industries was founded on a single principle: technical excellence is not optional. We are the invisible force behind South Africa's most memorable events."
+      />
 
-      <div className="pt-28 md:pt-32">
-        {/* THE NAME */}
-        <section className="min-h-[60vh] md:min-h-[70vh] flex items-center">
-          <div className="px-6 md:px-24 lg:px-32 max-w-content mx-auto w-full">
-            <Reveal>
-              <h1 className="font-display text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-bold text-ink leading-[0.9]">
-                Steller
-              </h1>
-            </Reveal>
+      {/* ─── PHILOSOPHY ─── */}
+      <section className="py-section">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <ScrollReveal>
+            <p className="text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+              Philosophy
+            </p>
+            <h2 className="mt-4 font-display text-display-lg font-extralight tracking-tight text-[var(--color-text)]">
+              What drives us
+            </h2>
+          </ScrollReveal>
 
-            <Reveal delay={0.1}>
-              <p className="mt-8 md:mt-12 text-muted text-base md:text-xl leading-relaxed max-w-2xl">
-                The double &ldquo;L&rdquo; is deliberate. Spoken, it sounds like{' '}
-                <em className="text-ink not-italic font-medium">stellar</em> — representing excellence.
-                Written, it&apos;s more visually distinctive — just like our photography and
-                videography. A name that embodies our commitment to top-tier sound, lighting, and
-                visual experiences.
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.2}>
-              <blockquote className="mt-12 md:mt-16 pl-5 border-l-2 border-ink/20">
-                <p className="font-display text-xl md:text-3xl text-ink leading-relaxed">
-                  &ldquo;Recognised for our quality, memorable for our character.&rdquo;
-                </p>
-              </blockquote>
-            </Reveal>
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {philosophyItems.map((item, i) => (
+              <ScrollReveal key={item.title} delay={i * 0.1}>
+                <motion.div
+                  className="rounded-sm border border-[var(--color-border)] p-8 transition-colors hover:border-[var(--color-gold)]"
+                  whileHover="hover"
+                  variants={lightSourceHover}
+                >
+                  <h3 className="font-display text-xl font-extralight text-[var(--color-text)]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-4 text-body font-light leading-relaxed text-[var(--color-muted)]">
+                    {item.description}
+                  </p>
+                </motion.div>
+              </ScrollReveal>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Philosophy */}
-        <section className="py-20 md:py-40 bg-white">
-          <div className="px-6 md:px-24 lg:px-32 max-w-content mx-auto w-full">
-            <Reveal>
-              <h2 className="font-display text-2xl md:text-5xl font-bold text-ink leading-tight max-w-2xl">
-                Every cue matters. Every transition is intentional.
+      {/* ─── STORY ─── */}
+      <section className="py-section bg-[var(--color-surface)] transition-colors duration-500">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <div className="grid gap-16 lg:grid-cols-12 lg:gap-8">
+            <ScrollReveal variant="left" className="lg:col-span-5">
+              <p className="text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+                Our Story
+              </p>
+              <h2 className="mt-4 font-display text-display-md font-extralight tracking-tight text-[var(--color-text)]">
+                From a single speaker to full-scale production
               </h2>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <p className="mt-6 md:mt-8 text-muted text-base md:text-lg leading-relaxed max-w-2xl">
-                Events are sequences of moments, each one building on the last. A lighting cue
-                that arrives half a beat late. A sound transition that doesn&apos;t land. These are
-                the things guests remember — not as details, but as feelings.
+            </ScrollReveal>
+            <ScrollReveal variant="right" className="lg:col-span-5 lg:col-start-8">
+              <p className="text-body-xl font-light leading-relaxed text-[var(--color-muted)]">
+                Steller Industries started in a Johannesburg garage in 2012 with one speaker system and an obsession with sound quality. Today, we're South Africa's go-to partner for events that demand technical perfection.
               </p>
-            </Reveal>
-
-            <Reveal delay={0.2}>
-              <p className="mt-4 md:mt-6 text-muted text-base md:text-lg leading-relaxed max-w-2xl">
-                We approach every production as a chain: input, processing, output. Every link
-                has to be clean. That&apos;s not perfectionism — it&apos;s the baseline.
+              <p className="mt-6 text-body-xl font-light leading-relaxed text-[var(--color-muted)]">
+                From intimate corporate gatherings to 15,000-capacity festivals, we bring the same meticulous attention to every project. We don't do "good enough." We do exceptional.
               </p>
-            </Reveal>
+            </ScrollReveal>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Story */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-0">
-          <Reveal>
-            <div className="aspect-square md:aspect-auto md:h-full overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=960&q=80"
-                alt="Sound mixing console in a dark venue"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-              />
-            </div>
-          </Reveal>
-          <div className="flex items-center">
-            <Reveal delay={0.1}>
-              <div className="p-6 md:p-16">
-                <h2 className="font-display text-2xl md:text-4xl font-bold text-ink leading-tight">
-                  Built from the ground up, one clean cue at a time.
-                </h2>
-                <p className="mt-4 md:mt-6 text-muted text-base md:text-lg leading-relaxed">
-                  Steller Industries began with a single lighting rig and a conviction that
-                  production quality shouldn&apos;t be a luxury reserved for the biggest budgets.
-                  We started small and built our reputation one clean cue at a time.
+      {/* ─── STATS ─── */}
+      <section className="border-y border-[var(--color-border)] py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <motion.div
+            className="grid grid-cols-2 gap-8 md:grid-cols-4"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {STATS.map(stat => (
+              <motion.div
+                key={stat.label}
+                variants={staggerItem}
+                className="text-center"
+              >
+                <p className="font-display text-display-md font-extralight text-[var(--color-gold)]">
+                  {stat.value}
                 </p>
-                <p className="mt-3 md:mt-4 text-muted text-base md:text-lg leading-relaxed">
-                  Today, we handle full-scale event production across South Africa. The scale
-                  changed. The standard didn&apos;t.
+                <p className="mt-2 text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-muted)]">
+                  {stat.label}
                 </p>
-              </div>
-            </Reveal>
-          </div>
-        </section>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
-        {/* Stats */}
-        <section className="py-20 md:py-40 bg-white">
-          <div className="px-6 md:px-24 lg:px-32 max-w-content mx-auto w-full">
-            <Reveal>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-                {[
-                  { number: '200+', label: 'Events' },
-                  { number: '50+', label: 'Corporate clients' },
-                  { number: '5', label: 'Disciplines' },
-                  { number: '100%', label: 'South African' },
-                ].map((stat) => (
-                  <div key={stat.label}>
-                    <p className="font-display text-3xl md:text-5xl font-bold text-accent">
-                      {stat.number}
-                    </p>
-                    <p className="mt-2 md:mt-3 text-xs text-muted uppercase tracking-widest">
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
+      {/* ─── TEAM ─── */}
+      <section className="py-section-lg">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <ScrollReveal>
+            <p className="text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+              Team
+            </p>
+            <h2 className="mt-4 font-display text-display-lg font-extralight tracking-tight text-[var(--color-text)]">
+              The people behind the precision
+            </h2>
+          </ScrollReveal>
+
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {team.map((member, i) => (
+              <ScrollReveal key={member.name} delay={i * 0.1}>
+                <motion.div
+                  className="rounded-sm border border-[var(--color-border)] p-8 transition-colors hover:border-[var(--color-gold)]"
+                  whileHover="hover"
+                  variants={lightSourceHover}
+                >
+                  {/* Avatar placeholder — glow container */}
+                  <div className="glow-container mb-6 aspect-square w-full rounded-sm bg-[var(--color-surface-raised)]" />
+                  <h3 className="font-display text-xl font-extralight text-[var(--color-text)]">
+                    {member.name}
+                  </h3>
+                  <p className="mt-1 text-[0.6875rem] font-normal uppercase tracking-[0.14em] text-[var(--color-gold)]">
+                    {member.role}
+                  </p>
+                  <p className="mt-4 text-body font-light leading-relaxed text-[var(--color-muted)]">
+                    {member.bio}
+                  </p>
+                </motion.div>
+              </ScrollReveal>
+            ))}
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </>
   )
 }

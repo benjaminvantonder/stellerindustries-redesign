@@ -2,63 +2,157 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --color-cream: #FEF8EF;
-  --color-surface: #FFFFFF;
-  --color-ink: #1F1F23;
-  --color-muted: #6B7280;
-  --color-accent: #3B82F6;
-  --color-accent-hover: #2563EB;
-}
-
 @layer base {
+  :root {
+    /* ─── LIGHT MODE (default) ─── */
+    --color-surface: #FFFFFF;
+    --color-surface-raised: #F5F3F0;
+    --color-muted: #57534E;
+    --color-border: #E8E5E0;
+    --color-text: #1C1917;
+    --color-bg: #FFFFFF;
+
+    /* ─── SHARED ACCENTS ─── */
+    --color-gold: #C9A84C;
+    --color-gold-light: #D4B95E;
+    --color-gold-dim: #9A7B30;
+
+    /* ─── LIGHT SOURCE EFFECTS ─── */
+    --glow-color: rgba(201, 168, 76, 0.15);
+    --glow-spread: 80px;
+    --shadow-ambient: 0 1px 3px rgba(0, 0, 0, 0.04);
+    --shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+    --shadow-dramatic: 0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  [data-theme="dark"] {
+    /* ─── DARK MODE ─── */
+    --color-surface: #0C0A09;
+    --color-surface-raised: #1C1917;
+    --color-muted: #A8A29E;
+    --color-border: #292524;
+    --color-text: #F5F3F0;
+    --color-bg: #000000;
+
+    /* ─── LIGHT SOURCE EFFECTS (dark) ─── */
+    --glow-color: rgba(201, 168, 76, 0.08);
+    --shadow-ambient: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
+    --shadow-dramatic: 0 12px 40px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
   html {
     overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 
   body {
-    background-color: var(--color-cream);
-    color: var(--color-ink);
+    background-color: var(--color-bg);
+    color: var(--color-muted);
     font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  @media (min-width: 768px) {
+    body { font-size: 17px; }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-text);
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 200;
+    transition: color 0.5s ease;
   }
 
   ::selection {
-    background: var(--color-accent);
-    color: var(--color-surface);
+    background: var(--color-gold);
+    color: #000000;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--color-bg); }
+  ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-gold-dim); }
+}
+
+/* ─── LIGHT SOURCE UTILITY ─── */
+@layer components {
+  .light-source {
+    position: relative;
+  }
+
+  .light-source::before {
+    content: '';
+    position: absolute;
+    inset: -40px;
+    background: radial-gradient(
+      ellipse at center,
+      var(--glow-color) 0%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .light-source:hover::before {
+    opacity: 1;
+  }
+
+  /* ─── ILLUMINATED SURFACE ─── */
+  .illuminated {
+    background: linear-gradient(
+      135deg,
+      var(--color-surface-raised) 0%,
+      var(--color-surface) 100%
+    );
+    box-shadow: var(--shadow-ambient);
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+  }
+
+  .illuminated:hover {
+    box-shadow: var(--shadow-elevated);
+    transform: translateY(-2px);
+  }
+
+  /* ─── THIN STROKE BORDERS ─── */
+  .stroke-thin {
+    border-width: 0.5px;
+    border-color: var(--color-border);
+  }
+
+  /* ─── GLOW CONTAINER ─── */
+  .glow-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glow-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at 30% 20%,
+      var(--glow-color) 0%,
+      transparent 60%
+    );
+    opacity: 0.5;
+    pointer-events: none;
   }
 }
 
-/* Nav link styles */
-.nav-link {
-  color: var(--color-ink);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 400;
-  padding: 4px 8px;
-  transition: color 0.2s;
-}
-
-.nav-link:hover {
-  color: var(--color-accent);
-}
-
-.nav-link.active {
-  color: var(--color-accent);
-  font-weight: 500;
-}
-
-.nav-pipe {
-  color: var(--color-ink);
-  opacity: 0.3;
-  user-select: none;
-}
-
+/* ─── REDUCED MOTION ─── */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
